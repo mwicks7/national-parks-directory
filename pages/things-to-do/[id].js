@@ -13,11 +13,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const park = await getParkData('parks', params.id)
+  const park = await getParkData('thingstodo', params.id)
   return { 
     props: { 
       parkCode: params.id,
-      data: park.data[0]
+      data: park.data
     } 
   }
 }
@@ -29,8 +29,13 @@ export default function Park({ parkCode, data }) {
     <Layout>
       <SubPage page='park' parkCode={parkCode}>
         <section>
-          <h1>{data.fullName}</h1>
-          <p>{data.description}</p>
+          <ul>
+            {data.map((todo) => (
+              <li key={todo.id}>
+                <h2>{todo.title}</h2>
+              </li>
+            ))}
+          </ul>
         </section>
       </SubPage>
     </Layout>
