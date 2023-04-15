@@ -8,15 +8,18 @@
   "dependencies": {
     "@material/button": "^14.0.0",
     "@material/card": "^14.0.0",
+    "@mui/material": "^5.12.0",
+    "@mui/styled-engine-sc": "^5.12.0",
     "mongodb": "^4.8.1",
     "next": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.62.0"
+    "sass": "^1.62.0",
+    "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "@types/node": "18.7.5",
-    "@types/react": "16.9.17",
+    "@types/react": "^17.0.58",
     "typescript": "4.6.3"
   }
 }

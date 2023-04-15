@@ -17,7 +17,7 @@ export default function News({ parkCode, data }) {
 
   return (
     <Layout>
-      <SubPage page='news' parkCode={parkCode}>
+      <SubPage pageTitle='News' parkCode={parkCode}>
         <section>
           <ul>
             {data.map((news) => (

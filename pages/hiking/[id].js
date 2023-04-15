@@ -2,6 +2,8 @@ import { getParkData } from '../../lib/nps_parks'
 import { getParkPaths } from '../../lib/db_parks'
 import Layout from '../../components/layout'
 import SubPage from '../../components/subPage'
+import MediaCard from '../../components/mediaCard'
+import Grid from '@mui/material/grid'
 
 
 export async function getStaticPaths() {
@@ -27,15 +29,23 @@ export default function Hiking({ parkCode, data }) {
 
   return (
     <Layout>
-      <SubPage page='park' parkCode={parkCode}>
+      <SubPage pageTitle='Hiking' parkCode={parkCode}>
         <section>
-          <ul>
+          <Grid container spacing={2}>
             {data.map((places) => (
-              <li key={places.id}>
-                <h2>{places.title}</h2>
-              </li>
+              <Grid item xs="12" md="6">
+                <MediaCard 
+                  key={places.id}
+                  img={places.images.length ? `${places.images[0].url}?quality=90&width=1000` : ''}
+                  title={places.title}
+                  subtitle=''
+                  links={[
+                    {href: places.url, text: 'NPS.gov'}                
+                  ]}
+                />
+              </Grid>
             ))}
-          </ul>
+          </Grid>
         </section>
       </SubPage>
     </Layout>

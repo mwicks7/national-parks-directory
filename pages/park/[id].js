@@ -27,7 +27,7 @@ export default function Park({ parkCode, data }) {
 
   return (
     <Layout>
-      <SubPage page='park' parkCode={parkCode}>
+      <SubPage pageTitle='Info' parkCode={parkCode}>
         <section>
           <h1>{data.fullName}</h1>
           <p>{data.description}</p>

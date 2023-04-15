@@ -1,6 +1,8 @@
 import { getParkData } from '../../lib/nps_parks'
 import Layout from '../../components/layout'
 import SubPage from '../../components/subPage'
+import MediaCard from '../../components/mediaCard'
+import Grid from '@mui/material/grid'
 
 export async function getServerSideProps({ params }) {
   const park = await getParkData('articles', params.id)
@@ -17,7 +19,7 @@ export default function Articles({ parkCode, data }) {
 
   return (
     <Layout>
-      <SubPage page='articles' parkCode={parkCode}>
+      <SubPage pageTitle='Articles' parkCode={parkCode}>
         <section>
           <ul>
             {data.map((article) => (
