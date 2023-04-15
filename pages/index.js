@@ -17,12 +17,13 @@ export default function Home({ parks }) {
           {parks.map((park) => (
 
             <Card 
-              img={`${park.npsId}.jpeg`}
+              key={park.parkCode}
+              img={`${park.parkCode}.jpeg`}
               title={park.name}
               subtitle={`${park.location.city}, ${park.location.state}`}
               links={[
-                {href: `/park/${park.npsId}`, text: 'View'},
-                {href: `https://www.nps.gov/${park.npsId}`, text: 'NPS.gov'}                
+                {href: `/park/${park.parkCode}`, text: 'View'},
+                {href: `https://www.nps.gov/${park.parkCode}`, text: 'NPS.gov'}                
               ]}
             />
           ))}
