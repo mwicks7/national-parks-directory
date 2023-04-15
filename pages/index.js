@@ -2,6 +2,7 @@ import { getAllParks } from "../lib/db_parks"
 
 import Link from 'next/link'
 import Layout from '../components/layout'
+import Card from '../components/card'
 
 export async function getStaticProps() {
   const parks = await getAllParks()
@@ -11,22 +12,22 @@ export async function getStaticProps() {
 export default function Home({ parks }) {
   return (
     <Layout>
-      
-      {/* Park Cards */}
       <div>
         <ul>
           {parks.map((park) => (
-            <li key={park.npsId}>
-              <h2>{park.name}</h2>
-              <h3>{park.location.city}, {park.location.state}</h3>
-              <Link href={`/park/${park.npsId}`}>View</Link> | <a target="_blank" href={`https://www.nps.gov/${park.npsId}`}>NPS.org</a>
-            </li>
+
+            <Card 
+              img={`${park.npsId}.jpeg`}
+              title={park.name}
+              subtitle={`${park.location.city}, ${park.location.state}`}
+              links={[
+                {href: `/park/${park.npsId}`, text: 'View'},
+                {href: `https://www.nps.gov/${park.npsId}`, text: 'NPS.gov'}                
+              ]}
+            />
           ))}
         </ul>
       </div>
-
-      {/* Map */}
-
     </Layout>
   )
 }
