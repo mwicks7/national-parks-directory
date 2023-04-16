@@ -2,6 +2,8 @@ import { getParkData } from '../../lib/npsApi'
 import { getParkInfo } from '../../lib/dbParks'
 import Layout from '../../components/layout'
 import SubPage from '../../components/subPage'
+import MediaCard from '../../components/mediaCard'
+import Grid from '@mui/material/Grid'
 
 export async function getServerSideProps({ params }) {
   const parkInfo = await getParkInfo(params.id)
@@ -23,13 +25,19 @@ export default function News({ parkCode, parkInfo, data }) {
     <Layout>
       <SubPage pageTitle='News' parkInfo={parkInfo} parkCode={parkCode}>
         <section>
-          <ul>
-            {data.map((news) => (
-              <li key={news.id}>
-                <h2>{news.title}</h2>
-              </li>
+          <Grid container spacing={2}>
+            {data.map((article) => (
+              <Grid item sm={12} md={12} key={article.id}>
+                <MediaCard 
+                  imgHeight={500}
+                  title={article.title}
+                  subtitle={article.releaseDate}
+                  description={article.abstract}
+                  img={article.image.url}
+                />
+              </Grid> 
             ))}
-          </ul>
+          </Grid>
         </section>
       </SubPage>
     </Layout>

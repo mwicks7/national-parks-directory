@@ -48,10 +48,10 @@ export default function Park({ parkCode, parkInfo, data }) {
 
   return (
     <Layout>
-      <button onClick={handleParkUpdate}>Update DB</button>
-      <br />
-      <br />
       <SubPage parkInfo={parkInfo} pageTitle='Info' parkCode={parkCode}>
+        {!parkInfo.description && 
+          <button onClick={handleParkUpdate}>Update DB</button>
+        }
 
         <Map />
         <Grid container spacing={2}>

@@ -4,12 +4,11 @@ import MediaCard from './mediaCard'
 export default function SubPage({ parkCode, parkInfo, pageTitle, children }) {
   return (
     <div>
-      <Link href="/">&lt; Back</Link>
+      <h1>{`${parkInfo.name} National Park`}</h1>
       <div>
         <MediaCard 
           img={`/images/${parkCode}.jpeg`}
-          imgHeight={370}
-          title={`${parkInfo.name} National Park`}
+          imgHeight={300}
           subtitle={`${parkInfo.location.city}, ${parkInfo.location.state}`}
           description={parkInfo.description}
           links={[

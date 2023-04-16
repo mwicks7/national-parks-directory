@@ -25,13 +25,19 @@ export default function Articles({ parkCode, parkInfo, data }) {
     <Layout>
       <SubPage pageTitle='Articles' parkInfo={parkInfo} parkCode={parkCode}>
         <section>
-          <ul>
+          <Grid container spacing={2}>
             {data.map((article) => (
-              <li key={article.id}>
-                <h2>{article.title}</h2>
-              </li>
+              <Grid item sm={12} md={12} key={article.id}>
+                <MediaCard 
+                  imgHeight={500}
+                  title={article.title}
+                  subtitle={article.description}
+                  description={article.listingDescription}
+                  img={article.listingImage.url}
+                />
+              </Grid> 
             ))}
-          </ul>
+          </Grid>
         </section>
       </SubPage>
     </Layout>
