@@ -1,9 +1,9 @@
-import { getParkData } from '../../lib/nps_parks'
-import { getParkPaths } from '../../lib/db_parks'
+import { getParkData } from '../../lib/npsApi'
+import { getParkPaths, getParkInfo } from '../../lib/dbParks'
 import Layout from '../../components/layout'
 import SubPage from '../../components/subPage'
 import MediaCard from '../../components/mediaCard'
-import Grid from '@mui/material/grid'
+import Grid from '@mui/material/Grid'
 
 export async function getStaticPaths() {
   const paths = await getParkPaths()
@@ -14,21 +14,24 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const park = await getParkData('thingstodo', params.id)
+  const parkInfo = await getParkInfo(params.id)
+  const parkData = await getParkData('thingstodo', params.id)
+
   return { 
     props: { 
       parkCode: params.id,
-      data: park.data
+      parkInfo: parkInfo[0],
+      data: parkData.data,
     } 
   }
 }
 
-export default function Park({ parkCode, data }) {
+export default function Park({ parkCode, parkInfo, data }) {
   console.log(data)
 
   return (
     <Layout>
-      <SubPage pageTitle="Things To Do" parkCode={parkCode}>
+      <SubPage pageTitle="Things To Do" parkInfo={parkInfo} parkCode={parkCode}>
         <section>
           <Grid container spacing={2}>
             {data.map((todo) => (
@@ -38,8 +41,9 @@ export default function Park({ parkCode, data }) {
                   img={todo.images.length ? `${todo.images[0].url}?quality=90&width=1000` : ''}
                   title={todo.title}
                   subtitle=''
+                  description={todo.shortDescription}
                   links={[
-                    {href: todo.url, text: 'NPS.gov'}                
+                    {href: todo.url, text: 'More info @ nps.gov'}                
                   ]}
                 />
               </Grid>

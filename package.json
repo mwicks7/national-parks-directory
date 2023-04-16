@@ -6,10 +6,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.15.1",
     "@material/button": "^14.0.0",
     "@material/card": "^14.0.0",
     "@mui/material": "^5.12.0",
     "@mui/styled-engine-sc": "^5.12.0",
+    "@react-google-maps/api": "^2.18.1",
     "mongodb": "^4.8.1",
     "next": "latest",
     "react": "^18.2.0",

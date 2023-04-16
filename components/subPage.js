@@ -1,21 +1,28 @@
 import Link from 'next/link'
-import Banner from './banner'
+import MediaCard from './mediaCard'
 
-export default function SubPage({ parkCode, pageTitle, children }) {
+export default function SubPage({ parkCode, parkInfo, pageTitle, children }) {
   return (
     <div>
-      <Banner img={`/images/${parkCode}.jpeg`} />
+      <Link href="/">&lt; Back</Link>
       <div>
-        <Link href="/">&lt; Home</Link>
-        <Link href={`/park/${parkCode}`}>Info</Link>
-        <Link href={`/visitor-centers/${parkCode}`}>Visitor Centers</Link>
-        <Link href={`/things-to-do/${parkCode}`}>Things To Do</Link>
-        <Link href={`/campgrounds/${parkCode}`}>Campgrounds</Link>
-        <Link href={`/hiking/${parkCode}`}>Hiking</Link>
-        <Link href={`/articles/${parkCode}`}>Articles</Link>
-        <Link href={`/news/${parkCode}`}>News</Link>
+        <MediaCard 
+          img={`/images/${parkCode}.jpeg`}
+          imgHeight={370}
+          title={`${parkInfo.name} National Park`}
+          subtitle={`${parkInfo.location.city}, ${parkInfo.location.state}`}
+          description={parkInfo.description}
+          links={[
+            {href: `/park/${parkCode}`, text: 'Info'},
+            {href: `/visitor-centers/${parkCode}`, text: 'Visitor Centers'},
+            {href: `/campgrounds/${parkCode}`, text: 'CampGrounds'},
+            {href: `/trails/${parkCode}`, text: 'Trails'},
+            {href: `/things-to-do/${parkCode}`, text: 'Things To Do'},
+            {href: `/articles/${parkCode}`, text: 'Articles'},
+            {href: `/news/${parkCode}`, text: 'News'}     
+          ]}
+        />
       </div>
-      <h1>Park Name</h1>
       <h2>{pageTitle}</h2>
       
       <div>

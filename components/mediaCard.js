@@ -25,27 +25,46 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function MediaCard({ img, title, subtitle, links }) {
+export default function MediaCard({ img, imgHeight=240, title, subtitle, description, links }) {
   return (
     <Card>
-      <CardMedia
-        sx={{ height: 180 }}
-        image={img}
-        title={title}
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {title}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {subtitle}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        {links.map(link => (
-          <Button size="small" component={ButtonLink} href={link.href}>{link.text}</Button>
-        ))}
-      </CardActions>
+      {(title || subtitle) && 
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {title}
+          </Typography>
+
+          {subtitle && 
+            <Typography variant="body2" color="text.secondary">
+              {subtitle}
+            </Typography>
+          }
+        </CardContent>
+      }
+      
+      {img &&
+        <CardMedia
+          sx={{ height: imgHeight }}
+          image={img}
+          title={title}
+        />
+      }
+
+      {description &&
+        <CardContent>
+          <Typography variant="body2" color="text.secondary">
+            {description}
+          </Typography>
+        </CardContent>
+      }
+
+      {links && 
+        <CardActions>
+          {links.map(link => (
+            <Button size="small" component={ButtonLink} href={link.href}>{link.text}</Button>
+          ))}
+        </CardActions>
+      }
     </Card>
   );
 }
