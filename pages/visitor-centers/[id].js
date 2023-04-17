@@ -29,13 +29,28 @@ export async function getStaticProps({ params }) {
 
 export default function VisitorCenters({ parkCode, parkInfo, data }) {
   console.log(data)
+  const markers = data.map(loc => {
+    return {
+      label: loc.name,
+      lat: Number(loc.latitude),
+      lng: Number(loc.longitude)
+    }
+  })
 
   return (
     <Layout>
       <SubPage pageTitle='Visitor Centers' parkInfo={parkInfo} parkCode={parkCode}>
         <section>
-          <Map />
           <Grid container spacing={2}>
+            <Grid item sm={12}>
+              <Map 
+                center={{
+                  lat: Number(parkInfo.latitude),
+                  lng: Number(parkInfo.longitude)
+                }}
+                markers={markers}
+              />
+            </Grid>
             {data.map((vc) => (
               <Grid item xs="12" md="6">
                 <MediaCard 

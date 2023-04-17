@@ -3,6 +3,7 @@ import { getParkPaths, getParkInfo } from '../../lib/dbParks'
 import Layout from '../../components/layout'
 import SubPage from '../../components/subPage'
 import MediaCard from '../../components/mediaCard'
+import Map from '../../components/map'
 import Grid from '@mui/material/Grid'
 
 export async function getStaticPaths() {
@@ -28,12 +29,29 @@ export async function getStaticProps({ params }) {
 
 export default function Campgrounds({ parkCode, parkInfo, data }) {
   console.log(data)
+  
+  const markers = data.map(loc => {
+    return {
+      label: loc.name,
+      lat: Number(loc.latitude),
+      lng: Number(loc.longitude)
+    }
+  })
 
   return (
     <Layout>
       <SubPage pageTitle='Campgrounds' parkInfo={parkInfo} parkCode={parkCode}>
         <section>
           <Grid container spacing={2}>
+          <Grid item sm={12}>
+            <Map 
+              center={{
+                lat: Number(parkInfo.latitude),
+                lng: Number(parkInfo.longitude)
+              }}
+              markers={markers}
+            />
+          </Grid>
             {data.map((cg) => (
               <Grid item xs="12" md="6">
                 <MediaCard 

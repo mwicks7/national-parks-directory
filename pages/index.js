@@ -21,7 +21,7 @@ export default function Home({ parks }) {
             <Grid item xs={12} sm={12}>
               <MediaCard 
                 key={park.parkCode}
-                imgHeight={300}
+                imgHeight={280}
                 img={`/images/${park.parkCode}.jpeg`}
                 title={park.name}
                 subtitle={`${park.location.city}, ${park.location.state}`}

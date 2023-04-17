@@ -53,8 +53,15 @@ export default function Park({ parkCode, parkInfo, data }) {
           <button onClick={handleParkUpdate}>Update DB</button>
         }
 
-        <Map />
         <Grid container spacing={2}>
+          <Grid item sm={12}>
+            <Map 
+              center={{
+                lat: Number(parkInfo.latitude),
+                lng: Number(parkInfo.longitude)
+              }}
+            />
+          </Grid>
           <Grid item sm={9}>
             <Grid container spacing={2}>
               <Grid item sm={12}>
