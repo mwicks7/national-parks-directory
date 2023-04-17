@@ -30,20 +30,20 @@ export default function Home({ parks }) {
   }
 
   return (
-    <Layout>
+    <Layout page="Home">
       <h1>The National Parks of The United States</h1>
-      <button onClick={handleParkUpdate}>Update DB</button>
+      {/* <button onClick={handleParkUpdate}>Update DB</button> */}
       <div>
-        <Map 
+        {/* <Map 
           center={{
             lat: 40.365794255437436,
             lng: -102.03842665156836
           }}
           markers={markers}
-        />
+        /> */}
         <Grid container spacing={2}>
           {parks.map((park) => (
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12} sm={6}>
               <MediaCard 
                 key={park.parkCode}
                 imgHeight={280}

@@ -40,7 +40,7 @@ export default function Park({ parkCode, parkInfo, data }) {
           latitude: data.latitude,
           longitude: data.longitude,
           description: data.description,
-          city: data.addresses[0].city
+          // city: data.addresses[0].city
         })
       }
     )
@@ -49,7 +49,7 @@ export default function Park({ parkCode, parkInfo, data }) {
   return (
     <Layout>
       <SubPage parkInfo={parkInfo} pageTitle='Info' parkCode={parkCode}>
-        {!parkInfo.location.city && 
+        {!parkInfo.description && 
           <button onClick={handleParkUpdate}>Update DB</button>
         }
 
