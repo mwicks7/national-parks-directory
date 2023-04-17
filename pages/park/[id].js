@@ -30,8 +30,6 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Park({ parkCode, parkInfo, data }) {
-  console.log(data)
-
   const handleParkUpdate = async () => {
     await fetch('/api/park', 
       {

@@ -22,7 +22,7 @@ export default function Home({ parks }) {
               <MediaCard 
                 key={park.parkCode}
                 imgHeight={280}
-                img={`/images/${park.parkCode}.jpeg`}
+                img={`/images/${park.parkCode}.jpg`}
                 title={park.name}
                 subtitle={`${park.location.city}, ${park.location.state}`}
                 description={park.description}

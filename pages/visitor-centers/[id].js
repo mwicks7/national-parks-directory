@@ -28,7 +28,6 @@ export async function getStaticProps({ params }) {
 }
 
 export default function VisitorCenters({ parkCode, parkInfo, data }) {
-  console.log(data)
   const markers = data.map(loc => {
     return {
       label: loc.name,

@@ -19,8 +19,6 @@ export async function getServerSideProps({ params }) {
 }
 
 export default function News({ parkCode, parkInfo, data }) {
-  console.log(data)
-
   return (
     <Layout>
       <SubPage pageTitle='News' parkInfo={parkInfo} parkCode={parkCode}>
