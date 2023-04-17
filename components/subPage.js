@@ -2,7 +2,7 @@ import Link from 'next/link'
 import MediaCard from './mediaCard'
 
 export default function SubPage({ parkCode, parkInfo, pageTitle, children }) {
-  const img = pageTitle === 'Info' ? `/images/${parkCode}.jpeg` : ''
+  const img = pageTitle === 'Info' ? `/images/${parkCode}.jpg` : ''
   const description = pageTitle === 'Info' ? parkInfo.description : ''
   // const subtitle = pageTitle === 'Info' ? parkInfo.subtitle : ''
   return (
