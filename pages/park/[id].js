@@ -30,6 +30,7 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Park({ parkCode, parkInfo, data }) {
+  console.log(data)
   const handleParkUpdate = async () => {
     await fetch('/api/park', 
       {
@@ -38,7 +39,8 @@ export default function Park({ parkCode, parkInfo, data }) {
           parkCode: parkCode,
           latitude: data.latitude,
           longitude: data.longitude,
-          description: data.description
+          description: data.description,
+          city: data.addresses[0].city
         })
       }
     )
@@ -47,7 +49,7 @@ export default function Park({ parkCode, parkInfo, data }) {
   return (
     <Layout>
       <SubPage parkInfo={parkInfo} pageTitle='Info' parkCode={parkCode}>
-        {!parkInfo.description && 
+        {!parkInfo.location.city && 
           <button onClick={handleParkUpdate}>Update DB</button>
         }
 
