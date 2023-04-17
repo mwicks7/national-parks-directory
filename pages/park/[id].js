@@ -70,11 +70,23 @@ export default function Park({ parkCode, parkInfo, data }) {
                   description={data.directionsInfo}
                 />
               </Grid>
-              <Grid item sm={12}>
-                <MediaCard 
-                  title="Weather Info"
-                  description={data.weatherInfo}
-                />
+              <Grid item sm={6}>
+                <MediaCard
+                  title="Address"
+                >
+                  <div>
+                    {data.addresses[0].line1}<br />
+                    {data.addresses[0].city}, {data.addresses[0].stateCode} {data.addresses[0].postalCode}
+                  </div>
+                </MediaCard>
+              </Grid>
+              <Grid item sm={6}>             
+                <MediaCard
+                  title="Contact"
+                >
+                  <b>Email:</b> {data.contacts.emailAddresses[0].emailAddress}<br />
+                  <b>Phone:</b> {data.contacts.phoneNumbers[0].phoneNumber}
+                </MediaCard>
               </Grid>
               <Grid item sm={12}>
                 <MediaCard 
@@ -87,15 +99,17 @@ export default function Park({ parkCode, parkInfo, data }) {
           <Grid item sm={3}>
             <Grid container spacing={2}>
               <Grid item sm={12}>
-                <MediaCard
-                  title="Addresses"
-                />
-              </Grid>
-              <Grid item sm={12}>             
-                <MediaCard
-                  title="Contact"
+                <MediaCard 
+                  title="Current Weather"
                 >
                 </MediaCard>
+              </Grid>
+              
+              <Grid item sm={12}>
+                <MediaCard 
+                  title="Weather Info"
+                  description={data.weatherInfo}
+                />
               </Grid>
             </Grid>
           </Grid>
