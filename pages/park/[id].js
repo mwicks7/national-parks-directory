@@ -1,4 +1,5 @@
 import { getParkData } from '../../lib/npsApi'
+import { getCurrentWeather } from '../../lib/weatherApi'
 import { getParkPaths, getParkInfo } from '../../lib/dbParks'
 import Layout from '../../components/layout'
 import SubPage from '../../components/subPage'
@@ -29,8 +30,12 @@ export async function getStaticProps({ params }) {
   }
 }
 
+
 export default function Park({ parkCode, parkInfo, data }) {
   console.log(data)
+  const [weatherData, setWeatherData] = useState({});
+
+
   const handleParkUpdate = async () => {
     await fetch('/api/park', 
       {
@@ -45,6 +50,16 @@ export default function Park({ parkCode, parkInfo, data }) {
       }
     )
   }
+
+  const handleGetCurrentWeather = async (lat, lng) => {
+    const response = await getCurrentWeather(lat, lng)
+    setWeatherData(response)
+  }
+  
+  useEffect(() => {    
+    handleGetCurrentWeather(parkInfo.latitude, parkInfo.longitude)
+
+  }, [parkInfo.latitude, parkInfo.longitude])
 
   return (
     <Layout>
@@ -102,6 +117,13 @@ export default function Park({ parkCode, parkInfo, data }) {
                 <MediaCard 
                   title="Current Weather"
                 >
+                  {weatherData.current &&
+                    <div className="flex-row center-text">
+                      <div>{weatherData.current.temp_f}&#8457;</div>
+                      <div><img src={`https:${weatherData.current.condition.icon}`} /></div>
+                      <div>{weatherData.current.condition.text}</div>
+                    </div>
+                  }
                 </MediaCard>
               </Grid>
               
