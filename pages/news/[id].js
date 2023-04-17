@@ -32,6 +32,9 @@ export default function News({ parkCode, parkInfo, data }) {
                   subtitle={article.releaseDate}
                   description={article.abstract}
                   img={article.image.url}
+                  links={[
+                    {href: article.url, text: 'More info @ nps.gov'}                
+                  ]}
                 />
               </Grid> 
             ))}

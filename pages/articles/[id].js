@@ -33,6 +33,9 @@ export default function Articles({ parkCode, parkInfo, data }) {
                   subtitle={article.description}
                   description={article.listingDescription}
                   img={article.listingImage.url}
+                  links={[
+                    {href: article.url, text: 'More info @ nps.gov'}                
+                  ]}
                 />
               </Grid> 
             ))}
