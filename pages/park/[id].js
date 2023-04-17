@@ -135,6 +135,20 @@ export default function Park({ parkCode, parkInfo, data }) {
               </Grid>
             </Grid>
           </Grid>
+          <Grid item sm={12}>
+            <MediaCard 
+              title="Photos"
+            >
+              {data.images.map((image) => {
+                return (
+                  <div>
+                    <img src={`${image.url}?quality=90&width=1856`} alt={image.altText} title={image.credit}/>
+                    <p>{image.caption}</p><br />
+                  </div>
+                )
+              })}
+            </MediaCard>
+          </Grid>
         </Grid>
       </SubPage>
     </Layout>
