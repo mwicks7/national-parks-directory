@@ -27,8 +27,6 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Park({ parkCode, parkInfo, data }) {
-  console.log(data)
-
   return (
     <Layout>
       <SubPage pageTitle="Things To Do" parkInfo={parkInfo} parkCode={parkCode}>

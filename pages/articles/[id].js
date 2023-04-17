@@ -19,7 +19,6 @@ export async function getServerSideProps({ params }) {
 }
 
 export default function Articles({ parkCode, parkInfo, data }) {
-  console.log(data)
 
   return (
     <Layout>
