@@ -12,13 +12,37 @@ export async function getStaticProps() {
 }
 
 export default function Home({ parks }) {
+  const markers = parks.map(park => {
+    return {
+      label: park.name,
+      lat: Number(park.latitude),
+      lng: Number(park.longitude)
+    }
+  })
+
+  const handleParkUpdate = async () => {
+    await fetch('/api/park', 
+      {
+        method: "POST",
+      }
+    )
+  }
+
   return (
-    <Layout>
+    <Layout page="Home">
       <h1>The National Parks of The United States</h1>
+      {/* <button onClick={handleParkUpdate}>Update DB</button> */}
       <div>
+        {/* <Map 
+          center={{
+            lat: 40.365794255437436,
+            lng: -102.03842665156836
+          }}
+          markers={markers}
+        /> */}
         <Grid container spacing={2}>
           {parks.map((park) => (
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12} sm={6}>
               <MediaCard 
                 key={park.parkCode}
                 imgHeight={280}

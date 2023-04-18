@@ -1,10 +1,10 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import styles from './layout.module.scss'
-import MyAppBar from './myAppBar'
 
 export const siteTitle = 'National Parks'
 
-export default function Layout({ children }) {
+export default function Layout({ page, children }) {
   return (
     <>
     <Head>
@@ -13,10 +13,14 @@ export default function Layout({ children }) {
       <meta name="og:title" content={siteTitle} />
       <meta name="twitter:card" content="summary_large_image" />
     </Head>
-    <MyAppBar />
+
     <div className={styles.container}>
       <header className={styles.header}>
-        
+        {page !== 'Home' &&
+          <Link href="/">
+            &lt; All Parks
+          </Link>
+        }
       </header>
 
       <main>

@@ -1,36 +1,41 @@
 import Link from 'next/link'
+import Map from './map'
 import MediaCard from './mediaCard'
+import Grid from '@mui/material/Grid'
 
-export default function SubPage({ parkCode, parkInfo, pageTitle, children }) {
-  const img = pageTitle === 'Info' ? `/images/${parkCode}.jpg` : ''
-  
+export default function SubPage({ parkCode, parkInfo, pageTitle, map, children }) {  
   return (
     <div>
       {/* <h1>{`${parkInfo.name} National Park`}</h1> */}
       <br />
-      <div>
-        <MediaCard 
-          img={img}
-          imgHeight={280}
-          title={`${parkInfo.name} National Park`}
-          subtitle={`${parkInfo.location.city}, ${parkInfo.location.state}`}
-          description={parkInfo.description}
-          links={[
-            {href: `/park/${parkCode}`, text: 'Info'},
-            {href: `/visitor-centers/${parkCode}`, text: 'Visitor Centers'},
-            {href: `/campgrounds/${parkCode}`, text: 'CampGrounds'},
-            {href: `/trails/${parkCode}`, text: 'Trails'},
-            {href: `/things-to-do/${parkCode}`, text: 'Things To Do'},
-            {href: `/articles/${parkCode}`, text: 'Articles'},
-            {href: `/news/${parkCode}`, text: 'News'}     
-          ]}
-        />
-      </div>
-      <h2>{pageTitle}</h2>
-      
-      <div>
-        {children}
-      </div>
+      <Grid container spacing={2}>
+        <Grid item sm={12}>
+          <MediaCard 
+            img={`/images/${parkCode}.jpg`}
+            imgHeight={280}
+            title={`${parkInfo.name} National Park`}
+            subtitle={`${parkInfo.location.city}, ${parkInfo.location.state}`}
+            description={parkInfo.description}
+          />
+        </Grid>
+        <Grid item sm={12}>
+          <MediaCard 
+            links={[
+              {href: `/park/${parkCode}`, text: 'Info', active: pageTitle === 'Info'},
+              {href: `/visitor-centers/${parkCode}`, text: 'Visitor Centers', active: pageTitle === 'Visitor Centers'},
+              {href: `/campgrounds/${parkCode}`, text: 'Campgrounds', active: pageTitle === 'Campgrounds'},
+              {href: `/trails/${parkCode}`, text: 'Trails', active: pageTitle === 'Trails'},
+              {href: `/things-to-do/${parkCode}`, text: 'Things To Do', active: pageTitle === 'Things To Do'},
+              {href: `/articles/${parkCode}`, text: 'Articles', active: pageTitle === 'Articles'},
+              {href: `/news/${parkCode}`, text: 'News', active: pageTitle === 'News'}     
+            ]}
+          />
+        </Grid>
+        <Grid item sm={12}>
+          {/* <h2>{pageTitle}</h2> */}
+          {children}
+        </Grid>
+      </Grid>
     </div>
   )
 }

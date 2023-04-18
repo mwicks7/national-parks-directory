@@ -6,3 +6,28 @@ body {
   background: #fafafa;
   margin: 0 10px 100px;
 }
+
+header a {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  display: inline-block;
+  margin: 10px 10px 0;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+.center-text {
+  text-align: center;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
