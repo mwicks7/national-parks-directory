@@ -110,15 +110,16 @@ export default function Home({ parks }) {
         </Select>
       </FormControl>
       
+      {/* <Map 
+        center={{
+          lat: 39.89442907857087,
+          lng: -96.7528869301745
+        }}
+        markers={markers}
+        zoom={4}
+      /> */}
+      
       <div>
-        <Map 
-          center={{
-            lat: 39.89442907857087,
-            lng: -96.7528869301745
-          }}
-          markers={markers}
-          zoom={4}
-        />
         {getGroupedParks(groupedParks)}
       </div>
     </Layout>
