@@ -1,18 +1,25 @@
-import { getParkData } from '../../lib/npsApi'
-import { getParkInfo } from '../../lib/dbParks'
+import { getParkPaths, getParkInfo, getParkData } from '../../lib/dbParks'
 import Layout from '../../components/layout'
 import SubPage from '../../components/subPage'
 import MediaCard from '../../components/mediaCard'
 import Grid from '@mui/material/Grid'
 
-export async function getServerSideProps({ params }) {
+export async function getStaticPaths() {
+  const paths = await getParkPaths()
+  return {
+    paths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params }) {
   const parkInfo = await getParkInfo(params.id)
   const parkData = await getParkData('articles', params.id)
 
   return { 
     props: { 
       parkCode: params.id,
-      parkInfo: parkInfo[0],
+      parkInfo: parkInfo,
       data: parkData.data,
     } 
   }
