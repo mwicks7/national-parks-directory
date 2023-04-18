@@ -6,6 +6,10 @@ import Layout from '../components/layout'
 import Map from '../components/map'
 import MediaCard from '../components/mediaCard'
 import Grid from '@mui/material/Grid'
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 export async function getStaticProps() {
   const parks = await getAllParks()
@@ -27,9 +31,22 @@ function groupParks(parks) {
   return groupedParks
 }
 
-export default function Home({ parks }) {
-  const [groupedParks, setGroupedParks] = useState(groupParks(parks))
+function extractStates(parks) {
+  let states = []
+  parks.map(park => {
+    if (!states.includes(park.location.stateFull)) {
+      states.push(park.location.stateFull)
+    }
+  })
+  return states
+}
 
+
+export default function Home({ parks }) {
+  const allGroupedParks = groupParks(parks)
+  const [groupedParks, setGroupedParks] = useState(allGroupedParks)
+  const [stateFilterValue, setStateFilterValue] = useState('')
+  const statesMenu = extractStates(parks)
   const markers = parks.map(park => {
     return {
       label: park.name,
@@ -37,7 +54,16 @@ export default function Home({ parks }) {
       lng: Number(park.longitude)
     }
   })
+  
+  function handleStateFilter(e) {
+    const stateName = e.target.value
 
+    setGroupedParks({
+      [stateName]: allGroupedParks[stateName]
+    })
+    setStateFilterValue(stateName)
+  }
+  
   const getGroupedParks = (parks) => {
     let content = []
     for (const key in parks) {
@@ -70,6 +96,20 @@ export default function Home({ parks }) {
   return (
     <Layout page="Home">
       <h1>The National Parks of The United States</h1>
+      <FormControl size="large" sx={{ m: 1, minWidth: 200 }}>
+        <InputLabel id="simple-select-label">Filter by state</InputLabel>
+        <Select
+          labelId="simple-select-label"
+          id="simple-select"
+          value={stateFilterValue}
+          onChange={handleStateFilter}
+        >
+          {statesMenu.map(stateName => (
+            <MenuItem key={stateName} value={stateName} >{stateName}</MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      
       <div>
         <Map 
           center={{
