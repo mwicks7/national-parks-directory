@@ -5,7 +5,6 @@ import SubPage from '../../components/subPage'
 import MediaCard from '../../components/mediaCard'
 import Grid from '@mui/material/Grid'
 import Map from '../../components/map'
-import Paper from '@mui/material/Paper'
 import { useState, useEffect } from "react";
 
 export async function getStaticPaths() {
@@ -44,10 +43,6 @@ export default function Park({ parkCode, parkInfo, data }) {
   return (
     <Layout>
       <SubPage parkInfo={parkInfo} pageTitle='Info' parkCode={parkCode}>
-        {!parkInfo.description && 
-          <button onClick={handleParkUpdate}>Update DB</button>
-        }
-
         <Grid container spacing={2}>
           <Grid item sm={12}>
             <Map 
