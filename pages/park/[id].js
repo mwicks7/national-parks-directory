@@ -19,7 +19,6 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const parkInfo = await getParkInfo(params.id)
   const parkData = await getParkData('info', params.id)
-  console.log(parkData.data)
   return { 
     props: { 
       parkCode: params.id,
