@@ -50,7 +50,7 @@ export default function MediaCard({ img, imgHeight=240, title, subtitle, descrip
       {links && 
         <CardActions>
           {links.map(link => (
-            <Button size="small" component={ButtonLink} href={link.href}>{link.text}</Button>
+            <Button size="small" variant={link.active ? 'contained' : 'text'} component={ButtonLink} href={link.href}>{link.text}</Button>
           ))}
         </CardActions>
       }
