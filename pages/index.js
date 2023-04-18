@@ -12,7 +12,6 @@ export async function getStaticProps() {
 }
 
 export default function Home({ parks }) {
-  console.log(parks)
   const markers = parks.map(park => {
     return {
       label: park.name,

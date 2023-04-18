@@ -32,24 +32,22 @@ export async function getStaticProps({ params }) {
 
 
 export default function Park({ parkCode, parkInfo, data }) {
-  console.log(data)
   const [weatherData, setWeatherData] = useState({});
 
-
-  const handleParkUpdate = async () => {
-    await fetch('/api/park', 
-      {
-        method: "POST",
-        body: JSON.stringify({ 
-          parkCode: parkCode,
-          latitude: data.latitude,
-          longitude: data.longitude,
-          description: data.description,
-          // city: data.addresses[0].city
-        })
-      }
-    )
-  }
+  // const handleParkUpdate = async () => {
+  //   await fetch('/api/park', 
+  //     {
+  //       method: "POST",
+  //       body: JSON.stringify({ 
+  //         parkCode: parkCode,
+  //         latitude: data.latitude,
+  //         longitude: data.longitude,
+  //         description: data.description,
+  //         // city: data.addresses[0].city
+  //       })
+  //     }
+  //   )
+  // }
 
   const handleGetCurrentWeather = async (lat, lng) => {
     const response = await getCurrentWeather(lat, lng)

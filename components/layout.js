@@ -5,7 +5,6 @@ import styles from './layout.module.scss'
 export const siteTitle = 'National Parks'
 
 export default function Layout({ page, children }) {
-  console.log(page)
   return (
     <>
     <Head>
