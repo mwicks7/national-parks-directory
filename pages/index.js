@@ -57,10 +57,13 @@ export default function Home({ parks }) {
   
   function handleStateFilter(e) {
     const stateName = e.target.value
-
-    setGroupedParks({
-      [stateName]: allGroupedParks[stateName]
-    })
+    if (stateName === 'all') {
+      setGroupedParks(allGroupedParks)
+    } else {
+      setGroupedParks({
+        [stateName]: allGroupedParks[stateName]
+      })
+    }
     setStateFilterValue(stateName)
   }
   
@@ -95,30 +98,39 @@ export default function Home({ parks }) {
 
   return (
     <Layout page="Home">
-      <h1>The National Parks of The United States</h1>
-      <FormControl size="large" sx={{ m: 1, minWidth: 200 }}>
-        <InputLabel id="simple-select-label">Filter by state</InputLabel>
-        <Select
-          labelId="simple-select-label"
-          id="simple-select"
-          value={stateFilterValue}
-          onChange={handleStateFilter}
-        >
-          {statesMenu.map(stateName => (
-            <MenuItem key={stateName} value={stateName} >{stateName}</MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <Grid container spacing={2}>
+        <Grid item sm={12} md={9}>
+          <h1>The National Parks of The United States</h1>
+        </Grid>
+        <Grid item sm={12} md={3}>
+          <FormControl size="large" sx={{ m: 1, minWidth: 200 }} variant="filled">
+            <InputLabel id="simple-select-label">Filter by state</InputLabel>
+            <Select
+              labelId="simple-select-label"
+              id="simple-select"
+              value={stateFilterValue}
+              onChange={handleStateFilter}
+            >
+              <MenuItem value="all" >All</MenuItem>
+              {statesMenu.map(stateName => (
+                <MenuItem key={stateName} value={stateName} >{`${stateName} (${allGroupedParks[stateName].length})`}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+        {/* <Grid item sm={12}>
+          <Map 
+            center={{
+              lat: 39.89442907857087,
+              lng: -96.7528869301745
+            }}
+            markers={markers}
+            zoom={4}
+          />
+        </Grid>         */}
+      </Grid>
       
-      {/* <Map 
-        center={{
-          lat: 39.89442907857087,
-          lng: -96.7528869301745
-        }}
-        markers={markers}
-        zoom={4}
-      /> */}
-      
+
       <div>
         {getGroupedParks(groupedParks)}
       </div>
