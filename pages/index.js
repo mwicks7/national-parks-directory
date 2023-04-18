@@ -20,18 +20,9 @@ export default function Home({ parks }) {
     }
   })
 
-  const handleParkUpdate = async () => {
-    await fetch('/api/park', 
-      {
-        method: "POST",
-      }
-    )
-  }
-
   return (
     <Layout page="Home">
       <h1>The National Parks of The United States</h1>
-      {/* <button onClick={handleParkUpdate}>Update DB</button> */}
       <div>
         {/* <Map 
           center={{
