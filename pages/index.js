@@ -24,13 +24,14 @@ export default function Home({ parks }) {
     <Layout page="Home">
       <h1>The National Parks of The United States</h1>
       <div>
-        {/* <Map 
+        <Map 
           center={{
-            lat: 40.365794255437436,
-            lng: -102.03842665156836
+            lat: 39.89442907857087,
+            lng: -96.7528869301745
           }}
           markers={markers}
-        /> */}
+          zoom={4}
+        />
         <Grid container spacing={2}>
           {parks.map((park) => (
             <Grid item xs={12} sm={6}>

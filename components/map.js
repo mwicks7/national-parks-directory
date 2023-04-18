@@ -12,7 +12,7 @@ const options = {
   //   'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m', // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
 }
 
-function Map({ center, markers=[] }) {
+function Map({ center, markers=[], zoom=10 }) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyDWsJoBnD-v_WscQc0CSu4dzISfa7m3v1M"
@@ -34,7 +34,7 @@ function Map({ center, markers=[] }) {
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
-        zoom={10}
+        zoom={zoom}
         onLoad=""
         onUnmount={onUnmount}
       >
