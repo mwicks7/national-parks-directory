@@ -1,5 +1,4 @@
-import { getParkData } from '../../lib/npsApi'
-import { getParkPaths, getParkInfo } from '../../lib/dbParks'
+import { getParkPaths, getParkInfo, getParkData } from '../../lib/dbParks'
 import Layout from '../../components/layout'
 import SubPage from '../../components/subPage'
 import MediaCard from '../../components/mediaCard'
@@ -17,17 +16,18 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const parkInfo = await getParkInfo(params.id)
   const parkData = await getParkData('visitorcenters', params.id)
-
+  console.log(parkData.parkCode)
   return { 
     props: { 
       parkCode: params.id,
-      parkInfo: parkInfo[0],
+      parkInfo: parkInfo,
       data: parkData.data,
     } 
   }
 }
 
 export default function VisitorCenters({ parkCode, parkInfo, data }) {
+
   const markers = data.map(loc => {
     return {
       label: loc.name,

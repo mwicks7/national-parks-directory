@@ -1,5 +1,4 @@
-import { getParkData } from '../../lib/npsApi'
-import { getParkPaths, getParkInfo } from '../../lib/dbParks'
+import { getParkPaths, getParkInfo, getParkData } from '../../lib/dbParks'
 import Layout from '../../components/layout'
 import SubPage from '../../components/subPage'
 import MediaCard from '../../components/mediaCard'
@@ -21,7 +20,7 @@ export async function getStaticProps({ params }) {
   return { 
     props: { 
       parkCode: params.id,
-      parkInfo: parkInfo[0],
+      parkInfo: parkInfo,
       data: parkData.data,
     } 
   }

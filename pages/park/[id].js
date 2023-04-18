@@ -1,6 +1,5 @@
-import { getParkData } from '../../lib/npsApi'
+import { getParkPaths, getParkInfo, getParkData } from '../../lib/dbParks'
 import { getCurrentWeather } from '../../lib/weatherApi'
-import { getParkPaths, getParkInfo } from '../../lib/dbParks'
 import Layout from '../../components/layout'
 import SubPage from '../../components/subPage'
 import MediaCard from '../../components/mediaCard'
@@ -19,12 +18,12 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const parkInfo = await getParkInfo(params.id)
-  const parkData = await getParkData('parks', params.id)
-
+  const parkData = await getParkData('info', params.id)
+  console.log(parkData.data)
   return { 
     props: { 
       parkCode: params.id,
-      parkInfo: parkInfo[0],
+      parkInfo: parkInfo,
       data: parkData.data[0],
     } 
   }
@@ -34,30 +33,14 @@ export async function getStaticProps({ params }) {
 export default function Park({ parkCode, parkInfo, data }) {
   const [weatherData, setWeatherData] = useState({});
 
-  // const handleParkUpdate = async () => {
-  //   await fetch('/api/park', 
-  //     {
-  //       method: "POST",
-  //       body: JSON.stringify({ 
-  //         parkCode: parkCode,
-  //         latitude: data.latitude,
-  //         longitude: data.longitude,
-  //         description: data.description,
-  //         // city: data.addresses[0].city
-  //       })
-  //     }
-  //   )
-  // }
-
   const handleGetCurrentWeather = async (lat, lng) => {
     const response = await getCurrentWeather(lat, lng)
     setWeatherData(response)
   }
-  
+
   useEffect(() => {    
     handleGetCurrentWeather(parkInfo.latitude, parkInfo.longitude)
-
-  }, [parkInfo.latitude, parkInfo.longitude])
+  }, [data, parkInfo.latitude, parkInfo.longitude])
 
   return (
     <Layout>
@@ -108,6 +91,20 @@ export default function Park({ parkCode, parkInfo, data }) {
                 />
               </Grid>
             </Grid>
+            <Grid item sm={12}>
+              <MediaCard 
+                title="Photos"
+              >
+                {data.images.map((image) => {
+                  return (
+                    <div>
+                      <img src={`${image.url}?quality=90&width=1368`} alt={image.altText} title={image.credit}/>
+                      <p>{image.caption}</p><br />
+                    </div>
+                  )
+                })}
+              </MediaCard>
+            </Grid>
           </Grid>
           <Grid item sm={3}>
             <Grid container spacing={2}>
@@ -132,20 +129,6 @@ export default function Park({ parkCode, parkInfo, data }) {
                 />
               </Grid>
             </Grid>
-          </Grid>
-          <Grid item sm={12}>
-            <MediaCard 
-              title="Photos"
-            >
-              {data.images.map((image) => {
-                return (
-                  <div>
-                    <img src={`${image.url}?quality=90&width=1856`} alt={image.altText} title={image.credit}/>
-                    <p>{image.caption}</p><br />
-                  </div>
-                )
-              })}
-            </MediaCard>
           </Grid>
         </Grid>
       </SubPage>

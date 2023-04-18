@@ -26,8 +26,7 @@ export default function SubPage({ parkCode, parkInfo, pageTitle, map, children }
               {href: `/campgrounds/${parkCode}`, text: 'Campgrounds', active: pageTitle === 'Campgrounds'},
               {href: `/trails/${parkCode}`, text: 'Trails', active: pageTitle === 'Trails'},
               {href: `/things-to-do/${parkCode}`, text: 'Things To Do', active: pageTitle === 'Things To Do'},
-              {href: `/articles/${parkCode}`, text: 'Articles', active: pageTitle === 'Articles'},
-              {href: `/news/${parkCode}`, text: 'News', active: pageTitle === 'News'}     
+              {href: `/articles/${parkCode}`, text: 'Articles', active: pageTitle === 'Articles'}
             ]}
           />
         </Grid>
