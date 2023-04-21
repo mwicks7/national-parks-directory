@@ -54,6 +54,7 @@ export default function Campgrounds({ parkCode, parkInfo, data }) {
                 <MediaCard 
                   key={cg.id}
                   img={cg.images.length ? `${cg.images[0].url}?quality=90&width=1000` : ''}
+                  imgHeight={350}
                   title={cg.name}
                   subtitle=''
                   description={cg.description}

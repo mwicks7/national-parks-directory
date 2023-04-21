@@ -54,6 +54,7 @@ export default function VisitorCenters({ parkCode, parkInfo, data }) {
                 <MediaCard 
                   key={vc.id}
                   img={vc.images.length ? `${vc.images[0].url}?quality=90&width=1000` : ''}
+                  imgHeight={350}
                   title={vc.name}
                   subtitle=''
                   description={vc.description}
