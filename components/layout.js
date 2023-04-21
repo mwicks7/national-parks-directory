@@ -8,7 +8,7 @@ export default function Layout({ page, children }) {
   return (
     <>
     <Head>
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.png" />
       <title>{siteTitle}</title>
       <meta name="description" content="Learn about The United States national parks" />
       <meta name="og:title" content={siteTitle} />
