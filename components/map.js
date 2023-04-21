@@ -9,7 +9,7 @@ const containerStyle = {
 
 const options = {
   // imagePath:
-  //   'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m', // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
+  //   '/images/tooltip.png', // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
 }
 
 function Map({ center, markers=[], zoom=10 }) {
@@ -25,6 +25,13 @@ function Map({ center, markers=[], zoom=10 }) {
     // map.fitBounds(bounds);
     // setMap(map)
   // }, [])
+
+  const onHover = React.useCallback(() => {
+    const infowindow = new google.maps.InfoWindow({
+      content: contentString,
+      ariaLabel: "Uluru",
+    });
+  }, [])
 
   const onUnmount = React.useCallback(function callback(map) {
     setMap(null)
@@ -45,18 +52,18 @@ function Map({ center, markers=[], zoom=10 }) {
                 <Marker 
                   key={marker.latitude} 
                   averageCenter={true}
-                  cursor="pointer"
                   position={{lat: marker.lat, lng: marker.lng}}
                   clusterer={clusterer}  
-                  label={marker.label} 
-                  onClick={() => alert(marker.label)}
+                  label={marker.label.substring(0, 21)} 
+                  icon={{
+                    url: '/images/map_tooltip.png',
+                    scaledSize: new google.maps.Size(160, 45)
+                  }}
                 />
               ))
             }
           </MarkerClusterer>
-
         }
-        { /* Child components, such as markers, info windows, etc. */ }
         <></>
       </GoogleMap>
   ) : <></>
