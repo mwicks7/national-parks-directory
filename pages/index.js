@@ -100,7 +100,7 @@ export default function Home({ parks }) {
     <Layout page="Home">
       <Grid container spacing={2}>
         <Grid item sm={12} md={9}>
-          <h1>USA National Parks Map Directory</h1>
+          <h1>The USA National Parks Map Directory</h1>
         </Grid>
         <Grid item sm={12} md={3}>
           <FormControl size="large" sx={{ m: 1, minWidth: 200 }} variant="filled">
