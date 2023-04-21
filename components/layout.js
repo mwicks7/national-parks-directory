@@ -2,13 +2,14 @@ import Head from 'next/head'
 import Link from 'next/link'
 import styles from './layout.module.scss'
 
-export const siteTitle = 'National Parks'
+export const siteTitle = 'The USA National Parks Map Directory'
 
 export default function Layout({ page, children }) {
   return (
     <>
     <Head>
       <link rel="icon" href="/favicon.ico" />
+      <title>{siteTitle}</title>
       <meta name="description" content="Learn about The United States national parks" />
       <meta name="og:title" content={siteTitle} />
       <meta name="twitter:card" content="summary_large_image" />
