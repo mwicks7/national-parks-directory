@@ -32,10 +32,11 @@ export default function Park({ parkCode, parkInfo, data }) {
         <section>
           <Grid container spacing={2}>
             {data.map((todo) => (
-              <Grid item xs="12" md="6">
+              <Grid item xs="12" md="12">
                 <MediaCard 
                   key={todo.id}
                   img={todo.images.length ? `${todo.images[0].url}?quality=90&width=1000` : ''}
+                  imgHeight={500}
                   title={todo.title}
                   subtitle=''
                   description={todo.shortDescription}

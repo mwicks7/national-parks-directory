@@ -11,11 +11,12 @@ export default function SubPage({ parkCode, parkInfo, pageTitle, map, children }
       <Grid container spacing={2}>
         <Grid item sm={12}>
           <MediaCard 
-            img={`/images/${parkCode}.jpg`}
-            imgHeight={280}
+            // img={`/images/${parkCode}.jpg`}
+            // imgHeight={280}
             title={`${parkInfo.name} National Park`}
             subtitle={`${parkInfo.location.city}, ${parkInfo.location.state}`}
-            description={parkInfo.description}
+            // description={parkInfo.description}
+           
           />
         </Grid>
         <Grid item sm={12}>
@@ -31,7 +32,6 @@ export default function SubPage({ parkCode, parkInfo, pageTitle, map, children }
           />
         </Grid>
         <Grid item sm={12}>
-          {/* <h2>{pageTitle}</h2> */}
           {children}
         </Grid>
       </Grid>
