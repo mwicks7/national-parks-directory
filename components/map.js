@@ -52,7 +52,6 @@ function Map({ center, markers=[], zoom=10 }) {
                 <Marker 
                   key={marker.latitude} 
                   averageCenter={true}
-                  cursor="pointer"
                   position={{lat: marker.lat, lng: marker.lng}}
                   clusterer={clusterer}  
                   label={marker.label.substring(0, 21)} 
@@ -60,14 +59,11 @@ function Map({ center, markers=[], zoom=10 }) {
                     url: '/images/map_tooltip.png',
                     scaledSize: new google.maps.Size(160, 45)
                   }}
-                  onClick={() => alert(marker.label)}
                 />
               ))
             }
           </MarkerClusterer>
-
         }
-        { /* Child components, such as markers, info windows, etc. */ }
         <></>
       </GoogleMap>
   ) : <></>
