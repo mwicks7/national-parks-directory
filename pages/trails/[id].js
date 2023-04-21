@@ -55,6 +55,7 @@ export default function Trails({ parkCode, parkInfo, data }) {
                 <MediaCard 
                   key={trails.id}
                   img={trails.images.length ? `${trails.images[0].url}?quality=90&width=1000` : ''}
+                  imgHeight={350}
                   title={trails.title}
                   subtitle=''
                   description={trails.listingDescription}

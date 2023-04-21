@@ -29,8 +29,8 @@ export async function getStaticProps({ params }) {
 
 
 export default function Park({ parkCode, parkInfo, data }) {
+  const pageTitle = 'Info'
   const [weatherData, setWeatherData] = useState({});
-
   const handleGetCurrentWeather = async (lat, lng) => {
     const response = await getCurrentWeather(lat, lng)
     setWeatherData(response)
@@ -54,6 +54,15 @@ export default function Park({ parkCode, parkInfo, data }) {
           </Grid>
           <Grid item sm={9}>
             <Grid container spacing={2}>
+              <Grid item sm={12}>
+                <MediaCard 
+                  img={`/images/${parkCode}.jpg`}
+                  imgHeight={280}
+                  title="About"
+                  // subtitle={`${parkInfo.location.city}, ${parkInfo.location.state}`}
+                  description={parkInfo.description}
+                />
+              </Grid>
               <Grid item sm={12}>
                 <MediaCard 
                   title="Directions"
