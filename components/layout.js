@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import styles from './layout.module.scss'
 
-export const siteTitle = 'The USA National Parks Map Directory'
+export const siteTitle = 'US National Parks Map Directory'
 
 export default function Layout({ page, children }) {
   return (
