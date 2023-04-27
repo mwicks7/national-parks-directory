@@ -4,7 +4,6 @@ import React from 'react'
 const containerStyle = {
   maxWidth: '100%',
   height: '500px',
-  marginBottom: '20px'
 };
 
 const options = {

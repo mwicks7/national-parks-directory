@@ -2,7 +2,6 @@ import { getParkPaths, getParkInfo, getParkData } from '../../lib/dbParks'
 import Layout from '../../components/layout'
 import SubPage from '../../components/subPage'
 import MediaCard from '../../components/mediaCard'
-import Grid from '@mui/material/Grid'
 
 export async function getStaticPaths() {
   const paths = await getParkPaths()
@@ -30,9 +29,9 @@ export default function Park({ parkCode, parkInfo, data }) {
     <Layout>
       <SubPage pageTitle="Things To Do" parkInfo={parkInfo} parkCode={parkCode}>
         <section>
-          <Grid container spacing={2}>
+          <div className="grid">
             {data.map((todo) => (
-              <Grid item xs="12" md="12">
+              <div className="grid__item">
                 <MediaCard 
                   key={todo.id}
                   img={todo.images.length ? `${todo.images[0].url}?quality=90&width=1000` : ''}
@@ -44,9 +43,9 @@ export default function Park({ parkCode, parkInfo, data }) {
                     {href: todo.url, text: 'More info @ nps.gov'}                
                   ]}
                 />
-              </Grid>
+              </div>
             ))}
-          </Grid>
+          </div>
         </section>
       </SubPage>
     </Layout>

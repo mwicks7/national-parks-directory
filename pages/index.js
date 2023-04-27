@@ -5,7 +5,6 @@ import { useState } from 'react'
 import Layout from '../components/layout'
 import Map from '../components/map'
 import MediaCard from '../components/mediaCard'
-import Grid from '@mui/material/Grid'
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -73,9 +72,10 @@ export default function Home({ parks }) {
       content.push(<h2>{key}</h2>)
 
       content.push(
-        <Grid container spacing={2}>
+        <>
+        <div className="grid">
           {parks[key].map(park => (
-            <Grid item xs={12}>
+            <div className="grid__item">
               <MediaCard 
                 key={park.parkCode}
                 imgHeight={280}
@@ -88,9 +88,10 @@ export default function Home({ parks }) {
                   {href: `https://www.nps.gov/${park.parkCode}`, text: 'NPS.gov'}                
                 ]}
               />
-            </Grid>
+            </div>
           ))}
-        </Grid>
+        </div>
+        </>
       )
     }
     return content
@@ -98,12 +99,7 @@ export default function Home({ parks }) {
 
   return (
     <Layout page="Home">
-      <Grid container spacing={2}>
-        <Grid item sm={12} md={9}>
-          <h1>US National Parks Map Directory</h1>
-        </Grid>
-        <Grid item sm={12} md={3}>
-          <FormControl size="large" sx={{ m: 1, minWidth: 200 }} variant="filled">
+          {/* <FormControl size="large" sx={{ m: 1, minWidth: 200 }} variant="filled">
             <InputLabel id="simple-select-label">Filter by state</InputLabel>
             <Select
               labelId="simple-select-label"
@@ -116,24 +112,19 @@ export default function Home({ parks }) {
                 <MenuItem key={stateName} value={stateName} >{`${stateName} (${allGroupedParks[stateName].length})`}</MenuItem>
               ))}
             </Select>
-          </FormControl>
-        </Grid>
-        {/* <Grid item sm={12}>
-          <Map 
+          </FormControl> */}
+
+          {/* <Map 
             center={{
               lat: 39.89442907857087,
               lng: -96.7528869301745
             }}
             markers={markers}
             zoom={4}
-          />
-        </Grid>         */}
-      </Grid>
+          /> */}
       
 
-      <div>
         {getGroupedParks(groupedParks)}
-      </div>
     </Layout>
   )
 }

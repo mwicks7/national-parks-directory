@@ -5,21 +5,19 @@ import Grid from '@mui/material/Grid'
 
 export default function SubPage({ parkCode, parkInfo, pageTitle, map, children }) {  
   return (
-    <div>
-      {/* <h1>{`${parkInfo.name} National Park`}</h1> */}
-      <br />
-      <Grid container spacing={2}>
-        <Grid item sm={12}>
+    <>
+      <div className="grid">
+        <div className="grid__item">
           <MediaCard 
             // img={`/images/${parkCode}.jpg`}
             // imgHeight={280}
             title={`${parkInfo.name} National Park`}
             subtitle={`${parkInfo.location.city}, ${parkInfo.location.state}`}
             // description={parkInfo.description}
-           
+            
           />
-        </Grid>
-        <Grid item sm={12}>
+        </div>
+        <div className="grid__item">
           <MediaCard 
             links={[
               {href: `/park/${parkCode}`, text: 'Info', active: pageTitle === 'Info'},
@@ -30,11 +28,10 @@ export default function SubPage({ parkCode, parkInfo, pageTitle, map, children }
               {href: `/articles/${parkCode}`, text: 'Articles', active: pageTitle === 'Articles'}
             ]}
           />
-        </Grid>
-        <Grid item sm={12}>
-          {children}
-        </Grid>
-      </Grid>
-    </div>
+        </div>
+      </div>
+      
+      {children}
+    </>
   )
 }

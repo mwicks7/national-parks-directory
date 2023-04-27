@@ -3,7 +3,6 @@ import { getCurrentWeather } from '../../lib/weatherApi'
 import Layout from '../../components/layout'
 import SubPage from '../../components/subPage'
 import MediaCard from '../../components/mediaCard'
-import Grid from '@mui/material/Grid'
 import Map from '../../components/map'
 import { useState, useEffect } from "react";
 
@@ -43,18 +42,18 @@ export default function Park({ parkCode, parkInfo, data }) {
   return (
     <Layout>
       <SubPage parkInfo={parkInfo} pageTitle='Info' parkCode={parkCode}>
-        <Grid container spacing={2}>
-          <Grid item sm={12}>
+        <div className="grid">
+          <div className="grid__item">
             <Map 
               center={{
                 lat: Number(parkInfo.latitude),
                 lng: Number(parkInfo.longitude)
               }}
             />
-          </Grid>
-          <Grid item sm={9}>
-            <Grid container spacing={2}>
-              <Grid item sm={12}>
+          </div>
+          <div className="grid__item grid__item--9">
+            <div className="grid">
+              <div className="grid__item">
                 <MediaCard 
                   img={`/images/${parkCode}.jpg`}
                   imgHeight={280}
@@ -62,14 +61,14 @@ export default function Park({ parkCode, parkInfo, data }) {
                   // subtitle={`${parkInfo.location.city}, ${parkInfo.location.state}`}
                   description={parkInfo.description}
                 />
-              </Grid>
-              <Grid item sm={12}>
+              </div>
+              <div className="grid__item">
                 <MediaCard 
                   title="Directions"
                   description={data.directionsInfo}
                 />
-              </Grid>
-              <Grid item sm={6}>
+              </div>
+              <div className="grid__item grid__item--6">
                 <MediaCard
                   title="Address"
                 >
@@ -78,40 +77,40 @@ export default function Park({ parkCode, parkInfo, data }) {
                     {data.addresses[0].city}, {data.addresses[0].stateCode} {data.addresses[0].postalCode}
                   </div>
                 </MediaCard>
-              </Grid>
-              <Grid item sm={6}>             
+              </div>
+              <div className="grid__item grid__item--6">            
                 <MediaCard
                   title="Contact"
                 >
                   <b>Email:</b> {data.contacts.emailAddresses[0].emailAddress}<br />
                   <b>Phone:</b> {data.contacts.phoneNumbers[0].phoneNumber}
                 </MediaCard>
-              </Grid>
-              <Grid item sm={12}>
+              </div>
+              <div className="grid__item">
                 <MediaCard 
                   title="Activities"
                   description={data.activities.map(act => act.name).join(' · ')}
                 />
-              </Grid>
-            </Grid>
-            <Grid item sm={12}>
-              <MediaCard 
-                title="Photos"
-              >
-                {data.images.map((image) => {
-                  return (
-                    <div>
-                      <img src={`${image.url}?quality=90&width=1368`} alt={image.altText} title={image.credit}/>
-                      <p>{image.caption}</p><br />
-                    </div>
-                  )
-                })}
-              </MediaCard>
-            </Grid>
-          </Grid>
-          <Grid item sm={3}>
-            <Grid container spacing={2}>
-              <Grid item sm={12}>
+              </div>
+              <div className="grid__item">
+                <MediaCard 
+                  title="Photos"
+                >
+                  {data.images.map((image) => {
+                    return (
+                      <div>
+                        <img src={`${image.url}?quality=90&width=1368`} alt={image.altText} title={image.credit}/>
+                        <p>{image.caption}</p><br />
+                      </div>
+                    )
+                  })}
+                </MediaCard>
+              </div>
+            </div>
+          </div>
+          <div className="grid__item grid__item--3">
+            <div className="grid">
+              <div className="grid__item">
                 <MediaCard 
                   title="Current Weather"
                 >
@@ -123,17 +122,17 @@ export default function Park({ parkCode, parkInfo, data }) {
                     </div>
                   }
                 </MediaCard>
-              </Grid>
+              </div>
               
-              <Grid item sm={12}>
+              <div className="grid__item">
                 <MediaCard 
                   title="Weather Info"
                   description={data.weatherInfo}
                 />
-              </Grid>
-            </Grid>
-          </Grid>
-        </Grid>
+              </div>
+            </div>
+          </div>
+        </div>
       </SubPage>
     </Layout>
   )
