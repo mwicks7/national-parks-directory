@@ -55,8 +55,8 @@ export default function Park({ parkCode, parkInfo, data }) {
             <div className="grid">
               <div className="grid__item">
                 <MediaCard 
-                  img={`/images/${parkCode}.jpg`}
-                  imgHeight={280}
+                  // img={`/images/${parkCode}.jpg`}
+                  // imgHeight={280}
                   title="About"
                   // subtitle={`${parkInfo.location.city}, ${parkInfo.location.state}`}
                   description={parkInfo.description}
