@@ -1,0 +1,75 @@
+.drawer {
+  visibility: hidden;
+  position: fixed;
+  z-index: 9;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 50px;
+
+  @include mq-small {
+    top: 0;
+    z-index: 11;
+  }
+  
+  &.drawer--open {
+    visibility: visible;
+  }
+}
+
+.drawer__content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 350px;
+  max-width: 100%;
+  background-color: #ffffff;
+  padding: 25px 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  overflow-y: scroll;
+}
+
+  .drawer--left {
+    left: -350px;
+    transition: left .3s ease;
+
+    .drawer--open & {
+      left: 0px;
+    }
+
+    .drawer--animate-out & {
+      left: -350px;
+    }
+  }
+
+  .drawer--right {
+    right: -350px;
+    transition: right .3s ease;
+
+    .drawer--open & {
+      right: 0;
+    }
+
+    .drawer--animate-out & {
+      right: -350px;
+    }
+  }
+
+  .drawer__backdrop {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: black;
+    opacity: 0;
+    transition: opacity .3s ease;
+
+    .drawer--open & {
+      opacity: .4;
+    }
+
+    .drawer--animate-out & {
+      opacity: 0;
+    }
+  }

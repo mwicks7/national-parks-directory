@@ -2,38 +2,77 @@
 @use "@material/button/styles";
 @include card.core-styles;
 
+@mixin mq-small {
+  @media (min-width: 600px) { @content; }
+}
+
+@mixin mq-med {
+  @media (min-width: 768px) { @content; }
+}
+
+@mixin mq-lrg {
+  @media (min-width: 1024px) { @content; }
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: #fafafa;
   margin: 0 0 100px;
+}
+
+a {
+  text-decoration: none;
+  color: #1976d2;
 }
 
 img {
   max-width: 100%;
 }
 
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+h1, .h1 {
+  // margin: 0 0 5px;
+  font-weight: 400;
+  font-size: 36px;
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 28px;
+}
+
 .header {
   background: #ffffff;
-  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
   padding: 10px;
   margin-bottom: 15px;
+  // font-weight: 400;
 }
 
-header a {
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  display: inline-block;
-  margin: 10px 10px 0;
-  text-decoration: none;
-  color: rgba(0, 0, 0, 0.87);
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
 
 .container {
   width: 960px;
   max-width: 100%;
   margin: 0 auto;
+}
+
+.paper {
+  background: #ffffff;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+}
+
+button {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
 }
 
 .grid {
@@ -60,3 +99,111 @@ header a {
   .grid__item--9 {
     width: 75%;
   }
+
+.padded {
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.park-header {
+  margin-bottom: 24px;
+}
+
+.park-header h1 {
+  margin-bottom: 10px;
+}
+
+.park-header div {
+  opacity: .6;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: #fff;
+  z-index: 10;
+}
+
+.header a {
+  
+}
+
+.logo {
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  display: inline-block;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1);
+  font-size: 18px;
+
+  img {
+    vertical-align: baseline;
+    margin-right: 10px;
+    width: 15px;
+    height: 15px;
+
+    @include mq-small {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  @include mq-small {
+    font-size: 24px;
+  }
+}
+main {
+  padding-top: 50px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+  .flex__item--2 {
+    width: 16.66%
+  }
+
+  .flex__item--8 {
+    width: 66.64%;
+  }
+
+  .flex__item--3 {
+    width: 25%;
+  }
+
+  .flex__item--6 {
+    width: 50%;
+  }
+
+.state-group {
+  padding-top: 50px;
+}
+
+.primary-nav {
+  a {
+    display: inline-block;
+    padding: 5px;
+  }
+}
+
+.secondary-nav {
+  
+  a {
+    padding: 5px 10px;
+  }
+
+  @include mq-small {
+    li {
+      display: inline-block;
+    }
+  }
+}
+@import 'drawer.scss';
