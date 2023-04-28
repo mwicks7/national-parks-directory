@@ -40,12 +40,12 @@ ul {
 
 h1, .h1 {
   // margin: 0 0 5px;
-  font-weight: 400;
-  font-size: 36px;
+  font-weight: 800;
+  font-size: 42px;
 }
 
-h2 {
-  font-weight: 400;
+h2, .h2 {
+  font-weight: 800;
   font-size: 28px;
 }
 
@@ -58,7 +58,7 @@ h2 {
 
 
 .container {
-  width: 960px;
+  width: 1100px;
   max-width: 100%;
   margin: 0 auto;
 }
@@ -128,16 +128,27 @@ button {
 }
 
 .park-header {
-  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 0;
+  // padding: 0 0 20px;
+  height: 280px;
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  
 }
-
 .park-header h1 {
-  margin-bottom: 10px;
+  margin: 0;
+  font-size: 60px;
+  text-shadow: 1px 0 5px #000000, 1px 0px 7px #000000;
 }
 
-.park-header div {
-  opacity: .6;
+.park-header .h2 {
+    text-shadow: 1px 0 5px #000000, 1px 0px 7px #000000;
 }
+
 
 .header {
   position: fixed;
@@ -215,18 +226,23 @@ main {
 .secondary-nav {
   
   li {
-    margin: 5px;
+    margin: 5px 5px 0;
     display: inline-block;
   }
+
   a {
     display: inline-block;
     padding: 5px 10px;
+    font-size: 18px;
+    // text-transform: uppercase;
+    // font-weight: 600;
+    // letter-spacing: .5px;
   }
   
   @include mq-small {
     li {
       display: inline-block;
-      margin: 0 5px;
+      margin: 5px 5px 0;
     }
   }
 }

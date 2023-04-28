@@ -11,22 +11,25 @@ export default function SubPage({ parkCode, parkInfo, pageTitle, map, children }
     {href: `/things-to-do/${parkCode}`, text: 'Things To Do', active: pageTitle === 'Things To Do'},
     {href: `/articles/${parkCode}`, text: 'Articles', active: pageTitle === 'Articles'}
   ]
+
   return (
     <>
-      <div className="park-header align-center">
-        <h1>{parkInfo.name}</h1>
-        <div>{parkInfo.location.city}, {parkInfo.location.state}</div>
+      <div className="paper padded">
+        <div className="park-header align-center" style={{backgroundImage: `url(/images/${parkCode}.jpg)`}}>
+          <h1>{parkInfo.name}</h1>
+          <div className="h2">{parkInfo.location.city}, {parkInfo.location.state}</div>
+        </div>
+        <nav className="secondary-nav padded align-center">
+          <ul>
+            {nav.map(n => (
+              <li>
+                <Link className={`button ${n.text === pageTitle ? 'button--active' : ''}`} href={n.href}>{n.text}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
       </div>
       
-      <nav className="secondary-nav padded align-center">
-        <ul>
-          {nav.map(n => (
-            <li>
-              <Link className={`button ${n.text === pageTitle ? 'button--active' : ''}`} href={n.href}>{n.text}</Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
         
       <h2 className="align-center">{pageTitle}</h2>
       {children}
