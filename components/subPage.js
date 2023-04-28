@@ -1,40 +1,35 @@
 import Link from 'next/link'
 import Map from './map'
 import MediaCard from './mediaCard'
-import Grid from '@mui/material/Grid'
 
 export default function SubPage({ parkCode, parkInfo, pageTitle, map, children }) {  
+  const nav = [
+    {href: `/park/${parkCode}`, text: 'Info', active: pageTitle === 'Info'},
+    {href: `/visitor-centers/${parkCode}`, text: 'Visitor Centers', active: pageTitle === 'Visitor Centers'},
+    {href: `/campgrounds/${parkCode}`, text: 'Campgrounds', active: pageTitle === 'Campgrounds'},
+    {href: `/trails/${parkCode}`, text: 'Trails', active: pageTitle === 'Trails'},
+    {href: `/things-to-do/${parkCode}`, text: 'Things To Do', active: pageTitle === 'Things To Do'},
+    {href: `/articles/${parkCode}`, text: 'Articles', active: pageTitle === 'Articles'}
+  ]
   return (
-    <div>
-      {/* <h1>{`${parkInfo.name} National Park`}</h1> */}
-      <br />
-      <Grid container spacing={2}>
-        <Grid item sm={12}>
-          <MediaCard 
-            // img={`/images/${parkCode}.jpg`}
-            // imgHeight={280}
-            title={`${parkInfo.name} National Park`}
-            subtitle={`${parkInfo.location.city}, ${parkInfo.location.state}`}
-            // description={parkInfo.description}
-           
-          />
-        </Grid>
-        <Grid item sm={12}>
-          <MediaCard 
-            links={[
-              {href: `/park/${parkCode}`, text: 'Info', active: pageTitle === 'Info'},
-              {href: `/visitor-centers/${parkCode}`, text: 'Visitor Centers', active: pageTitle === 'Visitor Centers'},
-              {href: `/campgrounds/${parkCode}`, text: 'Campgrounds', active: pageTitle === 'Campgrounds'},
-              {href: `/trails/${parkCode}`, text: 'Trails', active: pageTitle === 'Trails'},
-              {href: `/things-to-do/${parkCode}`, text: 'Things To Do', active: pageTitle === 'Things To Do'},
-              {href: `/articles/${parkCode}`, text: 'Articles', active: pageTitle === 'Articles'}
-            ]}
-          />
-        </Grid>
-        <Grid item sm={12}>
-          {children}
-        </Grid>
-      </Grid>
-    </div>
+    <>
+      <div className="park-header align-center">
+        <h1>{parkInfo.name}</h1>
+        <div>{parkInfo.location.city}, {parkInfo.location.state}</div>
+      </div>
+      
+      <nav className="secondary-nav padded align-center">
+        <ul>
+          {nav.map(n => (
+            <li>
+              <Link className={`button ${n.text === pageTitle ? 'button--active' : ''}`} href={n.href}>{n.text}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+        
+      <h2 className="align-center">{pageTitle}</h2>
+      {children}
+    </>
   )
 }

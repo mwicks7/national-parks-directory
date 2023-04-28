@@ -39,8 +39,8 @@ export default function VisitorCenters({ parkCode, parkInfo, data }) {
     <Layout>
       <SubPage pageTitle='Visitor Centers' parkInfo={parkInfo} parkCode={parkCode}>
         <section>
-          <Grid container spacing={2}>
-            <Grid item sm={12}>
+          <div className="grid">
+            <div className="grid__item">
               <Map 
                 center={{
                   lat: Number(parkInfo.latitude),
@@ -48,9 +48,9 @@ export default function VisitorCenters({ parkCode, parkInfo, data }) {
                 }}
                 markers={markers}
               />
-            </Grid>
+            </div>
             {data.map((vc) => (
-              <Grid item xs="12" md="6">
+              <div className="grid__item grid__item--6">
                 <MediaCard 
                   key={vc.id}
                   img={vc.images.length ? `${vc.images[0].url}?quality=90&width=1000` : ''}
@@ -62,9 +62,9 @@ export default function VisitorCenters({ parkCode, parkInfo, data }) {
                     {href: vc.url, text: 'More info @ nps.gov'}                
                   ]}
                 />
-              </Grid>
+              </div>
             ))}
-          </Grid>
+          </div>
         </section>
       </SubPage>
     </Layout>

@@ -4,7 +4,6 @@ import React from 'react'
 const containerStyle = {
   maxWidth: '100%',
   height: '500px',
-  marginBottom: '20px'
 };
 
 const options = {
@@ -38,6 +37,7 @@ function Map({ center, markers=[], zoom=10 }) {
   }, [])
 
   return isLoaded ? (
+    <div className="paper padded">
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
@@ -66,6 +66,7 @@ function Map({ center, markers=[], zoom=10 }) {
         }
         <></>
       </GoogleMap>
+    </div>
   ) : <></>
 }
 

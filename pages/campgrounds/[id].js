@@ -3,7 +3,6 @@ import Layout from '../../components/layout'
 import SubPage from '../../components/subPage'
 import MediaCard from '../../components/mediaCard'
 import Map from '../../components/map'
-import Grid from '@mui/material/Grid'
 
 export async function getStaticPaths() {
   const paths = await getParkPaths()
@@ -39,32 +38,32 @@ export default function Campgrounds({ parkCode, parkInfo, data }) {
     <Layout>
       <SubPage pageTitle='Campgrounds' parkInfo={parkInfo} parkCode={parkCode}>
         <section>
-          <Grid container spacing={2}>
-          <Grid item sm={12}>
-            <Map 
-              center={{
-                lat: Number(parkInfo.latitude),
-                lng: Number(parkInfo.longitude)
-              }}
-              markers={markers}
-            />
-          </Grid>
-            {data.map((cg) => (
-              <Grid item xs="12" md="6">
-                <MediaCard 
-                  key={cg.id}
-                  img={cg.images.length ? `${cg.images[0].url}?quality=90&width=1000` : ''}
-                  imgHeight={350}
-                  title={cg.name}
-                  subtitle=''
-                  description={cg.description}
-                  links={[
-                    {href: cg.url, text: 'More info @ nps.gov'}                
-                  ]}
-                />
-              </Grid>
-            ))}
-          </Grid>
+          <div className="grid">
+            <div className="grid__item">
+              <Map 
+                center={{
+                  lat: Number(parkInfo.latitude),
+                  lng: Number(parkInfo.longitude)
+                }}
+                markers={markers}
+              />
+            </div>
+              {data.map((cg) => (
+                <div className="grid__item grid__item--6">
+                  <MediaCard 
+                    key={cg.id}
+                    img={cg.images.length ? `${cg.images[0].url}?quality=90&width=1000` : ''}
+                    imgHeight={350}
+                    title={cg.name}
+                    subtitle=''
+                    description={cg.description}
+                    links={[
+                      {href: cg.url, text: 'More info @ nps.gov'}                
+                    ]}
+                  />
+                </div>
+              ))}
+          </div>
         </section>
       </SubPage>
     </Layout>

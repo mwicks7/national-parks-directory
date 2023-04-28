@@ -3,8 +3,6 @@ import Layout from '../../components/layout'
 import SubPage from '../../components/subPage'
 import MediaCard from '../../components/mediaCard'
 import Map from '../../components/map'
-import Grid from '@mui/material/Grid'
-
 
 export async function getStaticPaths() {
   const paths = await getParkPaths()
@@ -39,8 +37,8 @@ export default function Trails({ parkCode, parkInfo, data }) {
     <Layout>
       <SubPage pageTitle='Trails' parkInfo={parkInfo} parkCode={parkCode}>
         <section>
-          <Grid container spacing={2}>
-            <Grid item sm={12}>
+          <div className="grid">
+            <div className="grid__item">
               <Map 
                 center={{
                   lat: Number(parkInfo.latitude),
@@ -48,10 +46,9 @@ export default function Trails({ parkCode, parkInfo, data }) {
                 }}
                 markers={markers}
               />
-            </Grid>
+            </div>
             {data.map((trails) => (
-              
-              <Grid item xs="12" md="6">
+              <div className="grid__item grid__item--6">
                 <MediaCard 
                   key={trails.id}
                   img={trails.images.length ? `${trails.images[0].url}?quality=90&width=1000` : ''}
@@ -63,9 +60,9 @@ export default function Trails({ parkCode, parkInfo, data }) {
                     {href: trails.url, text: 'More info @ nps.gov'}                
                   ]}
                 />
-              </Grid>
+              </div>
             ))}
-          </Grid>
+          </div>
         </section>
       </SubPage>
     </Layout>

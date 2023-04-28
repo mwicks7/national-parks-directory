@@ -2,7 +2,6 @@ import { getParkPaths, getParkInfo, getParkData } from '../../lib/dbParks'
 import Layout from '../../components/layout'
 import SubPage from '../../components/subPage'
 import MediaCard from '../../components/mediaCard'
-import Grid from '@mui/material/Grid'
 
 export async function getStaticPaths() {
   const paths = await getParkPaths()
@@ -31,9 +30,9 @@ export default function Articles({ parkCode, parkInfo, data }) {
     <Layout>
       <SubPage pageTitle='Articles' parkInfo={parkInfo} parkCode={parkCode}>
         <section>
-          <Grid container spacing={2}>
+          <div className="grid">
             {data.map((article) => (
-              <Grid item sm={12} md={12} key={article.id}>
+              <div className="grid__item">
                 <MediaCard 
                   imgHeight={500}
                   title={article.title}
@@ -44,9 +43,9 @@ export default function Articles({ parkCode, parkInfo, data }) {
                     {href: article.url, text: 'More info @ nps.gov'}                
                   ]}
                 />
-              </Grid> 
+              </div> 
             ))}
-          </Grid>
+          </div>
         </section>
       </SubPage>
     </Layout>
