@@ -18,11 +18,11 @@ export default function SubPage({ parkCode, parkInfo, pageTitle, map, children }
         <div>{parkInfo.location.city}, {parkInfo.location.state}</div>
       </div>
       
-      <nav className="secondary-nav padded paper align-center">
+      <nav className="secondary-nav padded align-center">
         <ul>
           {nav.map(n => (
             <li>
-              <Link href={n.href}>{n.text}</Link>
+              <Link className={`button ${n.text === pageTitle ? 'button--active' : ''}`} href={n.href}>{n.text}</Link>
             </li>
           ))}
         </ul>
