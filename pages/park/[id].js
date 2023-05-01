@@ -43,14 +43,14 @@ export default function Park({ parkCode, parkInfo, data }) {
     <Layout>
       <SubPage parkInfo={parkInfo} pageTitle='Info' parkCode={parkCode}>
         <div className="grid">
-          <div className="grid__item">
+          {/* <div className="grid__item">
             <Map 
               center={{
                 lat: Number(parkInfo.latitude),
                 lng: Number(parkInfo.longitude)
               }}
             />
-          </div>
+          </div> */}
           <div className="grid__item grid__item--9">
             <div className="grid">
               <div className="grid__item">
