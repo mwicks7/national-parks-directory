@@ -89,9 +89,8 @@ export default function Layout({ page, children }) {
         <nav className="primary-nav">
           <ul>
             {navItems.map((nav) => (
-              <li>
+              <li key={nav}>
                 <Link 
-                  key={nav} 
                   href={'/#' + urlString(nav)}
                   onClick={() => setToggleNav(false)}
                 >{nav}</Link> 

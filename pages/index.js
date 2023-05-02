@@ -1,11 +1,7 @@
 import { getAllParks } from "../lib/dbParks"
-
-import Link from 'next/link'
-import { useState } from 'react'
-import Layout from '../components/layout'
-import Map from '../components/map'
-import MediaCard from '../components/mediaCard'
 import { urlString } from '../lib/utilities'
+import Layout from '../components/layout'
+import MediaCard from '../components/mediaCard'
 
 function groupParksData(parks) {
   let groupedParks = {}
@@ -27,13 +23,12 @@ const GroupedParks = ({ parks }) => {
   const parkGroups = groupParksData(parks)
   for (const key in parkGroups) {
     content.push(
-      <div id={urlString(key)} className="state-group">
+      <div key={urlString(key)} id={urlString(key)} className="state-group">
         <h2 className="align-center h1">{key}</h2>
         <div className="grid">
           {parkGroups[key].map(park => (
-            <div className="grid__item">
+            <div key={park.parkCode} className="grid__item">
               <MediaCard 
-                key={park.parkCode}
                 imgHeight={280}
                 img={`/images/${park.parkCode}.jpg`}
                 title={park.name}

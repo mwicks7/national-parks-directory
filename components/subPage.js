@@ -1,6 +1,4 @@
 import Link from 'next/link'
-import Map from './map'
-import MediaCard from './mediaCard'
 
 export default function SubPage({ parkCode, parkInfo, pageTitle, map, children }) {  
   const nav = [
