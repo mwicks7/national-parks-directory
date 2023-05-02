@@ -1,6 +1,4 @@
 import Link from 'next/link'
-import Map from './map'
-import MediaCard from './mediaCard'
 
 export default function SubPage({ parkCode, parkInfo, pageTitle, map, children }) {  
   const nav = [
@@ -19,17 +17,17 @@ export default function SubPage({ parkCode, parkInfo, pageTitle, map, children }
           <h1>{parkInfo.name}</h1>
           <div className="h2">{parkInfo.location.city}, {parkInfo.location.state}</div>
         </div>
-        <nav className="secondary-nav padded align-center">
-          <ul>
-            {nav.map(n => (
-              <li>
-                <Link className={`button ${n.text === pageTitle ? 'button--active' : ''}`} href={n.href}>{n.text}</Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
       </div>
       
+      <nav className="secondary-nav padded align-center">
+        <ul>
+          {nav.map(n => (
+            <li>
+              <Link className={`button ${n.text === pageTitle ? 'button--active' : ''}`} href={n.href}>{n.text}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
         
       <h2 className="align-center">{pageTitle}</h2>
       {children}

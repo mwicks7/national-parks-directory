@@ -1,17 +1,9 @@
 import { getAllParks } from "../lib/dbParks"
-
-import Link from 'next/link'
-import { useState } from 'react'
-import Layout from '../components/layout'
-import Map from '../components/map'
-import MediaCard from '../components/mediaCard'
 import { urlString } from '../lib/utilities'
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Layout from '../components/layout'
+import MediaCard from '../components/mediaCard'
 
-function groupParks(parks) {
+function groupParksData(parks) {
   let groupedParks = {}
 
   parks.map(park => {
@@ -26,94 +18,43 @@ function groupParks(parks) {
   return groupedParks
 }
 
-export default function Home({ parks }) {
-  const allGroupedParks = groupParks(parks)
-  const [groupedParks, setGroupedParks] = useState(allGroupedParks)
-  const [stateFilterValue, setStateFilterValue] = useState('')
-  const markers = parks.map(park => {
-    return {
-      label: park.name,
-      lat: Number(park.latitude),
-      lng: Number(park.longitude)
-    }
-  })
-  
-  function handleStateFilter(e) {
-    const stateName = e.target.value
-    if (stateName === 'all') {
-      setGroupedParks(allGroupedParks)
-    } else {
-      setGroupedParks({
-        [stateName]: allGroupedParks[stateName]
-      })
-    }
-    setStateFilterValue(stateName)
-  }
-  
-  const getGroupedParks = (parks) => {
-    let content = []
-    for (const key in parks) {
-      content.push()
-
-      content.push(
-        <div id={urlString(key)} className="state-group">
-          <h2 className="align-center h1">{key}</h2>
-          <div className="grid">
-            {parks[key].map(park => (
-              <div className="grid__item">
-                <MediaCard 
-                  key={park.parkCode}
-                  imgHeight={280}
-                  img={`/images/${park.parkCode}.jpg`}
-                  title={park.name}
-                  subtitle={`${park.location.city}, ${park.location.state}`}
-                  description={park.description}
-                  links={[
-                    {href: `/park/${park.parkCode}`, text: 'Info & Maps'},
-                    {href: `https://www.nps.gov/${park.parkCode}`, text: 'NPS.gov'}                
-                  ]}
-                />
-              </div>
-            ))}
-          </div>
+const GroupedParks = ({ parks }) => {
+  let content = []
+  const parkGroups = groupParksData(parks)
+  for (const key in parkGroups) {
+    content.push(
+      <div key={urlString(key)} id={urlString(key)} className="state-group">
+        <h2 className="align-center h1">{key}</h2>
+        <div className="grid">
+          {parkGroups[key].map(park => (
+            <div key={park.parkCode} className="grid__item">
+              <MediaCard 
+                imgHeight={280}
+                img={`/images/${park.parkCode}.jpg`}
+                title={park.name}
+                subtitle={`${park.location.city}, ${park.location.state}`}
+                description={park.description}
+                links={[
+                  {href: `/park/${park.parkCode}`, text: 'Info & Maps'},
+                  {href: `https://www.nps.gov/${park.parkCode}`, text: 'NPS.gov'}                
+                ]}
+              />
+            </div>
+          ))}
         </div>
-      )
-    }
-    return content
+      </div>
+    )
   }
+  return content
+}
 
+export default function Home({ parks }) {
   return (
     <Layout page="Home">
-          {/* <FormControl size="large" sx={{ m: 1, minWidth: 200 }} variant="filled">
-            <InputLabel id="simple-select-label">Filter by state</InputLabel>
-            <Select
-              labelId="simple-select-label"
-              id="simple-select"
-              value={stateFilterValue}
-              onChange={handleStateFilter}
-            >
-              <MenuItem value="all" >All</MenuItem>
-              {statesMenu.map(stateName => (
-                <MenuItem key={stateName} value={stateName} >{`${stateName} (${allGroupedParks[stateName].length})`}</MenuItem>
-              ))}
-            </Select>
-          </FormControl> */}
-
-          {/* <Map 
-            center={{
-              lat: 39.89442907857087,
-              lng: -96.7528869301745
-            }}
-            markers={markers}
-            zoom={4}
-          /> */}
-      
-
-        {getGroupedParks(groupedParks)}
+      <GroupedParks parks={parks} />
     </Layout>
   )
 }
-
 
 export async function getStaticProps() {
   const parks = await getAllParks()
