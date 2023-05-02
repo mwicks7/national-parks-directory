@@ -22,14 +22,15 @@ function groupParksData(parks) {
   return groupedParks
 }
 
-const groupedParksDom = (parks) => {
+const GroupedParks = ({ parks }) => {
   let content = []
-  for (const key in parks) {
+  const parkGroups = groupParksData(parks)
+  for (const key in parkGroups) {
     content.push(
       <div id={urlString(key)} className="state-group">
         <h2 className="align-center h1">{key}</h2>
         <div className="grid">
-          {parks[key].map(park => (
+          {parkGroups[key].map(park => (
             <div className="grid__item">
               <MediaCard 
                 key={park.parkCode}
@@ -53,10 +54,9 @@ const groupedParksDom = (parks) => {
 }
 
 export default function Home({ parks }) {
-
   return (
     <Layout page="Home">
-      {groupedParksDom(groupParksData(parks))}
+      <GroupedParks parks={parks} />
     </Layout>
   )
 }
