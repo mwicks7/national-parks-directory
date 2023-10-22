@@ -9,50 +9,45 @@ export async function getStaticProps() {
 }
 
 function groupByState(parks) {
-  let groupedParks = {}
+  let states = []
 
   parks.map(park => {
     const { stateFull } = park.location
-    if (groupedParks[stateFull]) {
-      groupedParks[stateFull].push(park)
+    const groupedState = states?.find( state => state.stateFull === stateFull)
+
+    if (groupedState) {
+      groupedState.parks.push(park)
     } else {
-      groupedParks[stateFull] = [park]
+      const newState = {stateFull, parks: [park]}
+      states.push(newState)
     }
   })
 
-  return groupedParks
-}
-
-const ParkListing = ({ parks }) => {
-  let content = []
-  const parksByState = groupByState(parks)
-
-  for (const stateFull in parksByState) {
-    content.push(
-      <div
-        key={urlString(stateFull)}
-        id={urlString(stateFull)}
-        className="park-listing__state"
-      >
-        <h2 className="park-listing__state-name h1">{stateFull}</h2>
-        <div className="park-listing__parks">
-          {parksByState[stateFull].map(park => (
-            <div className="park-listing__park">
-              <ParkCard park={park} />
-            </div>
-          ))}
-        </div>
-      </div>
-    )
-  }
-  return content
+  return states
 }
 
 export default function Home({ parks }) {
+  const parksByState = groupByState(parks)
+
   return (
     <Layout page="Home">
       <div className="park-listing">
-        <ParkListing parks={parks} />
+        {parksByState.map(state => (
+          <div
+            key={urlString(state.stateFull)}
+            id={urlString(state.stateFull)}
+            className="park-listing__state"
+          >
+            <h2 className="park-listing__state-name h1">{state.stateFull}</h2>
+            <div className="park-listing__parks">
+              {state.parks.map(park => (
+                <div className="park-listing__park">
+                  <ParkCard park={park} />
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </Layout>
   )
