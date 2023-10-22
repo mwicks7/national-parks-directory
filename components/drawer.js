@@ -54,7 +54,7 @@ export default function Drawer({ children, id, triggerId, location, toggleState,
           </button>
         </div>
 
-        <div class="drawer__main">
+        <div className="drawer__main">
           {children}
         </div>
       </div>

@@ -48,9 +48,9 @@ function Map({ center, markers=[], zoom=9 }) {
         {markers &&
           <MarkerClusterer options={options}>
             {(clusterer) =>
-              markers.map((marker) => (
+              markers.map((marker, i) => (
                 <Marker
-                  key={marker.latitude}
+                  key={`${i}-${marker.latitude}`}
                   averageCenter={true}
                   position={{lat: marker.lat, lng: marker.lng}}
                   clusterer={clusterer}

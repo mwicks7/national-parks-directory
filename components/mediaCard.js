@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function MediaCard({ img, imgHeight=240, title, subtitle, description, links, children}) {
   return (
     <div className="media-card">
-      {title && <h1 className="media-card__title">{title}</h1>}
+      {title && <h2 className="media-card__title">{title}</h2>}
 
       {img && <div className="media-card__image" style={{backgroundImage: `url(${img})`}}></div>}
 
@@ -14,7 +14,7 @@ export default function MediaCard({ img, imgHeight=240, title, subtitle, descrip
           </p>
         }
 
-        {children && <p>{children}</p>}
+        {children && <>{children}</>}
 
         {links &&
           <div className="media-card__links">
