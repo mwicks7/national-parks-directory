@@ -1,61 +1,40 @@
 import Link from 'next/link'
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 
 export default function MediaCard({ img, imgHeight=240, title, subtitle, description, links, children}) {
   return (
-    <Card>
-      {(title || subtitle) && 
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {title}
-          </Typography>
-
-          {subtitle && 
-            <Typography variant="body2" color="text.secondary">
-              {subtitle}
-            </Typography>
-          }
-        </CardContent>
+    <div className="media-card paper">
+      {title &&
+        <h1 className="media-card__title">{title}</h1>
       }
-      
       {img &&
-        <CardMedia
-          sx={{ height: imgHeight }}
-          image={img}
-          title={title}
-        />
+        <div className="media-card__image" style={{backgroundImage: `url(${img})`}}></div>
       }
 
-      {description &&
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
+      <div className="media-card__details">
+
+        {description &&
+          <p className="media-card__description">
             {description}
-          </Typography>
-        </CardContent>
-      }
+          </p>
+        }
 
-      {children &&
-        <CardContent>
-          <Typography variant="body2" color="text.secondary">
+        {children &&
+          <p>
             {children}
-          </Typography>
-        </CardContent>
-      }
+          </p>
+        }
 
-      {links && 
-        <CardActions>
-          {links.map(link => (
-            <Button key={link.text} size="small" variant={link.active ? 'contained' : 'text'} component={ButtonLink} href={link.href}>{link.text}</Button>
-          ))}
-        </CardActions>
-      }
-    </Card>
+        {links &&
+          <div className="media-card__links">
+            {links.map(link => (
+              <Link key={link.text} href={link.href}>
+                {link.text}
+              </Link>
+            ))}
+          </div>
+        }
+
+      </div>
+    </div>
   );
 }
-
-const ButtonLink = (props) => <Link {...props}>{props.children}</Link>;
