@@ -34,14 +34,17 @@ export default function Home({ parks }) {
       <div className="park-listing">
         {parksByState.map(state => (
           <div
-            key={urlString(state.stateFull)}
-            id={urlString(state.stateFull)}
             className="park-listing__state"
+            id={urlString(state.stateFull)}
+            key={urlString(state.stateFull)}
           >
-            <h2 className="park-listing__state-name h1">{state.stateFull}</h2>
+            <h1 className="park-listing__state-name h1">{state.stateFull}</h1>
             <div className="park-listing__parks">
               {state.parks.map(park => (
-                <div className="park-listing__park">
+                <div
+                  className="park-listing__park"
+                  key={`park-listing-${urlString(park.name)}`}
+                >
                   <ParkCard park={park} />
                 </div>
               ))}

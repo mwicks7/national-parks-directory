@@ -26,7 +26,6 @@ export default function Layout({ page, children }) {
       const response = await fetch('/api/parks')
       const parks = await response.json()
       const states = getStates(parks)
-      console.log(states)
       setNavItems(states)
     }
 

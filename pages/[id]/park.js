@@ -67,9 +67,9 @@ export default function Park({ parkInfo, data }) {
             title="Current Weather"
           >
             {weatherData.current &&
-              <div class="weather-data">
+              <div className="weather-data">
                 <div>{weatherData.current.temp_f}&#8457;</div>
-                <div><img src={`https:${weatherData.current.condition.icon}`} /></div>
+                <div><img aria-hidden="true" src={`https:${weatherData.current.condition.icon}`} /></div>
                 <div>{weatherData.current.condition.text}</div>
               </div>
             }

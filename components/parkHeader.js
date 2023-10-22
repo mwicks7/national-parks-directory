@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { urlString } from '../lib/utilities'
 
 export default function ParkHeader({ park, pageTitle}) {
   const nav = [
@@ -18,7 +19,7 @@ export default function ParkHeader({ park, pageTitle}) {
       <nav className="park-header__nav">
         <ul className="park-header__links">
           {nav.map(n => (
-            <li>
+            <li key={`park-header-link-${urlString(n.text)}`}>
               <Link className={`park-header__link ${n.text === pageTitle ? 'park-header__link--active' : ''}`} href={n.href}>{n.text}</Link>
             </li>
           ))}
