@@ -1,4 +1,3 @@
-
 import { getAllParks } from '../../lib/dbParks'
 
 export async function getStaticProps() {
@@ -7,22 +6,22 @@ export async function getStaticProps() {
 }
 
 export default function DataScraper({ parks }) {
-
   const handleScrape = async (parkCode) => {
-    const response = await fetch('/api/scraper', 
-    {
-      method: 'POST',
-      body: JSON.stringify({ 
-        parkCode: parkCode
-      })
-    })
+    await fetch('/api/scraper',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          parkCode: parkCode
+        })
+      }
+    )
   }
 
   return (
     <div>
       {parks.map((park) => (
         <p>
-          {park.name}: 
+          {park.name}:
           <button onClick={() => handleScrape(park.parkCode)} >Scrape {park.parkCode}</button>
         </p>
       ))}
