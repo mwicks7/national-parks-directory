@@ -58,6 +58,7 @@ export default function Drawer({ children, id, triggerId, location, toggleState,
           {children}
         </div>
       </div>
+
       <div className="drawer__backdrop" onClick={() => setAnimateOut(true)}></div>
     </div>
   )

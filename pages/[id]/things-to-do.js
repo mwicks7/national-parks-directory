@@ -32,7 +32,6 @@ export default function Park({ parkCode, parkInfo, data }) {
         parkInfo={parkInfo}
         parkCode={parkCode}
       >
-        {console.log(data)}
         {data.map((todo) => (
           <MediaCard
             key={todo.id}

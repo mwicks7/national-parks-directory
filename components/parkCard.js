@@ -11,11 +11,10 @@ export default function ParkCard({ park }) {
       </div>
 
       <Link href={`/${park.parkCode}/park`}>
-        <div className="park-card__image" style={{backgroundImage: `url(/images/${park.parkCode}.jpg)`}}>
-        </div>
+        <div className="park-card__image" style={{backgroundImage: `url(/images/${park.parkCode}.jpg)`}}></div>
       </Link>
-      <div className="park-card__details">
 
+      <div className="park-card__details">
         <p className="park-card__description">{park.description}</p>
         <div className="park-card__links">
           <Link href={`/${park.parkCode}/park`}>

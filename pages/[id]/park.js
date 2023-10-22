@@ -25,7 +25,6 @@ export async function getStaticProps({ params }) {
   }
 }
 
-
 export default function Park({ parkCode, parkInfo, data }) {
   const pageTitle = 'Info'
   const [weatherData, setWeatherData] = useState({});

@@ -23,7 +23,6 @@ export async function getStaticProps({ params }) {
   }
 }
 
-
 export default function Photos({ parkCode, parkInfo, data }) {
   const pageTitle = 'Photos'
   const markers = data.images.map(loc => {

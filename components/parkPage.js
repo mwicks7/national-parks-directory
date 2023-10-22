@@ -10,7 +10,6 @@ export default function ParkPage({ parkCode, parkInfo, pageTitle, mapMarkers, ch
           park={parkInfo}
           pageTitle={pageTitle}
         />
-
         <div className="park-page__main">
           {children}
         </div>

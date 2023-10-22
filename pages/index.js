@@ -3,6 +3,11 @@ import { urlString } from '../lib/utilities'
 import Layout from '../components/layout'
 import ParkCard from '../components/parkCard'
 
+export async function getStaticProps() {
+  const parks = await getAllParks()
+  return { props: { parks } }
+}
+
 function groupByState(parks) {
   let groupedParks = {}
 
@@ -51,9 +56,4 @@ export default function Home({ parks }) {
       </div>
     </Layout>
   )
-}
-
-export async function getStaticProps() {
-  const parks = await getAllParks()
-  return { props: { parks } }
 }
