@@ -33,10 +33,7 @@ const ParkListing = ({ parks }) => {
         <div className="park-listing__parks">
           {parksByState[stateFull].map(park => (
             <div className="park-listing__park">
-              <ParkCard
-                park={park}
-                listing={true}
-              />
+              <ParkCard park={park} />
             </div>
           ))}
         </div>

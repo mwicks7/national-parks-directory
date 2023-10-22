@@ -1,9 +1,7 @@
 import { getParkPaths, getParkInfo, getParkData } from '../../lib/dbParks'
 import Layout from '../../components/layout'
-import SubPage from '../../components/subPage'
+import ParkPage from '../../components/parkPage'
 import MediaCard from '../../components/mediaCard'
-import Grid from '@mui/material/Grid'
-import Map from '../../components/map'
 
 export async function getStaticPaths() {
   const paths = await getParkPaths()
@@ -37,7 +35,7 @@ export default function VisitorCenters({ parkCode, parkInfo, data }) {
 
   return (
     <Layout>
-      <SubPage
+      <ParkPage
         pageTitle='Visitor Centers'
         parkInfo={parkInfo}
         parkCode={parkCode}
@@ -56,7 +54,7 @@ export default function VisitorCenters({ parkCode, parkInfo, data }) {
               ]}
             />
           ))}
-      </SubPage>
+      </ParkPage>
     </Layout>
   )
 }

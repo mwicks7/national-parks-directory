@@ -1,18 +1,19 @@
 import Link from 'next/link'
-import ParkCard from '../components/parkCard'
+import ParkHeader from './parkHeader'
 import Map from './map'
 
-export default function SubPage({ parkCode, parkInfo, pageTitle, mapMarkers, children }) {
+export default function ParkPage({ parkCode, parkInfo, pageTitle, mapMarkers, children }) {
   return (
     <div className="park-page">
       <div className="park-page__content">
-        <ParkCard
+        <ParkHeader
           park={parkInfo}
-          listing={false}
           pageTitle={pageTitle}
         />
 
-        {children}
+        <div className="park-page__main">
+          {children}
+        </div>
       </div>
 
       <div className="park-page__map">

@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export default function MediaCard({ img, imgHeight=240, title, subtitle, description, links, children}) {
   return (
-    <div className="media-card paper">
+    <div className="media-card">
       {title &&
         <h1 className="media-card__title">{title}</h1>
       }

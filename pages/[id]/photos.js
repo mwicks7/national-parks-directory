@@ -1,10 +1,7 @@
 import { getParkPaths, getParkInfo, getParkData } from '../../lib/dbParks'
-import { getCurrentWeather } from '../../lib/weatherApi'
 import Layout from '../../components/layout'
-import SubPage from '../../components/subPage'
+import ParkPage from '../../components/parkPage'
 import MediaCard from '../../components/mediaCard'
-import Map from '../../components/map'
-import { useState, useEffect } from "react";
 
 export async function getStaticPaths() {
   const paths = await getParkPaths()
@@ -39,7 +36,7 @@ export default function Photos({ parkCode, parkInfo, data }) {
 
   return (
     <Layout>
-      <SubPage
+      <ParkPage
         parkInfo={parkInfo}
         pageTitle={pageTitle}
         parkCode={parkCode}
@@ -54,7 +51,7 @@ export default function Photos({ parkCode, parkInfo, data }) {
             </MediaCard>
           )
         })}
-      </SubPage>
+      </ParkPage>
     </Layout>
   )
 }

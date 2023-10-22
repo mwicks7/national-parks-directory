@@ -53,10 +53,10 @@
         right: -350px;
       }
     }
-
 }
 
   .drawer__header {
+    @include paper;
     position: sticky;
     top: 0;
     display: flex;
