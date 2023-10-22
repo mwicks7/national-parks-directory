@@ -1,9 +1,9 @@
 import { getAllParks } from "../lib/dbParks"
 import { urlString } from '../lib/utilities'
 import Layout from '../components/layout'
-import MediaCard from '../components/mediaCard'
+import ParkCard from '../components/parkCard'
 
-function groupParksData(parks) {
+function groupByState(parks) {
   let groupedParks = {}
 
   parks.map(park => {
@@ -18,26 +18,24 @@ function groupParksData(parks) {
   return groupedParks
 }
 
-const GroupedParks = ({ parks }) => {
+const ParkListing = ({ parks }) => {
   let content = []
-  const parkGroups = groupParksData(parks)
-  for (const key in parkGroups) {
+  const parksByState = groupByState(parks)
+
+  for (const stateFull in parksByState) {
     content.push(
-      <div key={urlString(key)} id={urlString(key)} className="state-group">
-        <h2 className="align-center h1">{key}</h2>
-        <div className="grid">
-          {parkGroups[key].map(park => (
-            <div key={park.parkCode} className="grid__item">
-              <MediaCard 
-                imgHeight={280}
-                img={`/images/${park.parkCode}.jpg`}
-                title={park.name}
-                subtitle={`${park.location.city}, ${park.location.state}`}
-                description={park.description}
-                links={[
-                  {href: `/park/${park.parkCode}`, text: 'Info & Maps'},
-                  {href: `https://www.nps.gov/${park.parkCode}`, text: 'NPS.gov'}                
-                ]}
+      <div
+        key={urlString(stateFull)}
+        id={urlString(stateFull)}
+        className="park-listing__state"
+      >
+        <h2 className="park-listing__state-name h1">{stateFull}</h2>
+        <div className="park-listing__parks">
+          {parksByState[stateFull].map(park => (
+            <div className="park-listing__park">
+              <ParkCard
+                park={park}
+                listing={true}
               />
             </div>
           ))}
@@ -51,7 +49,9 @@ const GroupedParks = ({ parks }) => {
 export default function Home({ parks }) {
   return (
     <Layout page="Home">
-      <GroupedParks parks={parks} />
+      <div className="park-listing">
+        <ParkListing parks={parks} />
+      </div>
     </Layout>
   )
 }

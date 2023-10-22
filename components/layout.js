@@ -44,42 +44,30 @@ export default function Layout({ page, children }) {
       </Head>
 
       <header className="header paper">
-        <div className="container">
-          <div className="flex">
-            <div className="flex__item flex__item--2">
-              <button 
-                className="app__menu-btn app__menu-btn--nav"
-                onClick={() => setToggleNav((prev) => !prev)}
-                id="navDrawerTrigger"
-              >
-                <Image 
-                  src={'/images/menu.svg'} 
-                  height={30} 
-                  width={30} 
-                  alt="Open navigation"
-                />
-              </button>
-            </div>
-            <div className="flex__item flex__item--8 align-center">
-              <Link className="logo" href="/">
-                <Image src="/images/npd_logo.svg" height={24} width={24} alt="Logo"/>
-                US National Parks Directory
-              </Link>
-            </div>
-          </div>
-          {/* {page === 'Home' &&
-           
-          } */}
-        </div>
+        <button
+          className="header__menu-button"
+          onClick={() => setToggleNav((prev) => !prev)}
+          id="navDrawerTrigger"
+        >
+          <Image
+            src={'/images/menu.svg'}
+            height={30}
+            width={30}
+            alt="Open navigation"
+          />
+        </button>
+
+        <Link className="header__logo" href="/">
+          <Image src="/images/npd_logo.svg" height={24} width={24} alt="Logo"/>
+          US National Parks Directory
+        </Link>
       </header>
 
       <main>
-        <div className="container">
-          {children}
-        </div>
-      </main>   
+        {children}
+      </main>
 
-      <Drawer 
+      <Drawer
         location="left"
         toggleState={toggleNav}
         setToggleState={setToggleNav}
@@ -90,15 +78,15 @@ export default function Layout({ page, children }) {
           <ul>
             {navItems.map((nav) => (
               <li key={nav}>
-                <Link 
+                <Link
                   href={'/#' + urlString(nav)}
                   onClick={() => setToggleNav(false)}
-                >{nav}</Link> 
+                >{nav}</Link>
               </li>
             ))}
           </ul>
         </nav>
-      </Drawer>   
+      </Drawer>
     </>
   )
 }

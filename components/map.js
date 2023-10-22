@@ -3,7 +3,7 @@ import React from 'react'
 
 const containerStyle = {
   maxWidth: '100%',
-  height: '500px',
+  height: '100%',
 };
 
 const options = {
@@ -11,7 +11,7 @@ const options = {
   //   '/images/tooltip.png', // so you must have m1.png, m2.png, m3.png, m4.png, m5.png and m6.png in that folder
 }
 
-function Map({ center, markers=[], zoom=10 }) {
+function Map({ center, markers=[], zoom=9 }) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: "AIzaSyDWsJoBnD-v_WscQc0CSu4dzISfa7m3v1M"
@@ -37,7 +37,7 @@ function Map({ center, markers=[], zoom=10 }) {
   }, [])
 
   return isLoaded ? (
-    <div className="paper padded">
+    <div className="park-map paper">
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
@@ -45,16 +45,16 @@ function Map({ center, markers=[], zoom=10 }) {
         onLoad=""
         onUnmount={onUnmount}
       >
-        {markers && 
+        {markers &&
           <MarkerClusterer options={options}>
             {(clusterer) =>
               markers.map((marker) => (
-                <Marker 
-                  key={marker.latitude} 
+                <Marker
+                  key={marker.latitude}
                   averageCenter={true}
                   position={{lat: marker.lat, lng: marker.lng}}
-                  clusterer={clusterer}  
-                  label={marker.label.substring(0, 21)} 
+                  clusterer={clusterer}
+                  label={marker.label.substring(0, 21)}
                   icon={{
                     url: '/images/map_tooltip.png',
                     scaledSize: new google.maps.Size(160, 45)

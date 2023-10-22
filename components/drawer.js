@@ -26,39 +26,39 @@ export default function Drawer({ children, id, triggerId, location, toggleState,
       content.removeEventListener('focusOut', trapFocus)
     }
 
-    if (animateOut === false) return 
+    if (animateOut === false) return
 
     setTimeout(() => {
       setToggleState(false)
       setAnimateOut(false)
     }, 300)
   }, [animateOut, toggleState, id, triggerId, setToggleState])
-  
-  
+
+
   return (
-    <div 
-      className={`drawer ${toggleState ? 'drawer--open' : ''} ${animateOut ? 'drawer--animate-out' : ''}`}
+    <div
+      className={`drawer drawer--${location} ${toggleState ? 'drawer--open' : ''} ${animateOut ? 'drawer--animate-out' : ''}`}
       role="presentation"
       aria-hidden={!toggleState}
     >
-      <div className="drawer__backdrop" onClick={() => setAnimateOut(true)}></div>
-      <div className={`drawer__content drawer--${location}`} tabIndex="0" id={id}>
+      <div className="drawer__content" tabIndex="0" id={id}>
+        <div className="drawer__header paper">
+          <h2 className="drawer__title">Jump to State</h2>
+          <button className="drawer__close-button" onClick={() => setAnimateOut(true)}>
+            <Image
+              src={'/images/close.svg'}
+              height={30}
+              width={30}
+              alt="Close Drawer"
+            />
+          </button>
+        </div>
 
-        {!hideCloseButton && 
-          <div className="text--align-right">
-            <button className="app__menu-btn app__menu-btn--cart" onClick={() => setAnimateOut(true)}>
-              <Image 
-                src={'/images/close.svg'} 
-                height={30} 
-                width={30} 
-                alt="Close Drawer"
-              />
-            </button>
-          </div>        
-        }
-
-        {children}
+        <div class="drawer__main">
+          {children}
+        </div>
       </div>
-    </div>
+      <div className="drawer__backdrop" onClick={() => setAnimateOut(true)}></div>
+      </div>
   )
 }

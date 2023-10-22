@@ -1,17 +1,17 @@
 .drawer {
   visibility: hidden;
   position: fixed;
-  z-index: 9;
+  z-index: 10;
   left: 0;
   right: 0;
   bottom: 0;
-  top: 50px;
+  top: 0;
 
   @include mq-small {
-    top: 0;
+    // top: 0;
     z-index: 11;
   }
-  
+
   &.drawer--open {
     visibility: visible;
   }
@@ -19,44 +19,71 @@
 
 .drawer__content {
   position: absolute;
+  width: 350px;
   top: 0;
   bottom: 0;
-  width: 350px;
-  max-width: 100%;
   background-color: #ffffff;
-  padding: 25px 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   overflow-y: scroll;
-}
+  z-index: 2;
 
-  .drawer--left {
+  .drawer--left & {
     left: -350px;
     transition: left .3s ease;
-
-    .drawer--open & {
-      left: 0px;
-    }
-
-    .drawer--animate-out & {
-      left: -350px;
-    }
   }
 
-  .drawer--right {
-    right: -350px;
-    transition: right .3s ease;
+  .drawer--left.drawer--open &  {
+    left: 0px;
+  }
 
-    .drawer--open & {
-      right: 0;
-    }
+  .drawer--left.drawer--animate-out & {
+    left: -350px;
+  }
 
-    .drawer--animate-out & {
+
+    .drawer--right & {
       right: -350px;
+      transition: right .3s ease;
+
+      .drawer--open & {
+        right: 0;
+      }
+
+      .drawer--animate-out & {
+        right: -350px;
+      }
     }
+
+}
+
+  .drawer__header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 15px;
+  }
+
+    .drawer__title {
+      margin: 0;
+      font-weight: 400;
+      font-size: 18px;
+    }
+
+    .drawer__close-button {
+      width: 50px;
+      height: 50px;
+      border-left: 1px solid rgba(0,0,0,.1);
+    }
+
+  .drawer__main {
+    padding: 15px;
   }
 
   .drawer__backdrop {
-    position: absolute;
+    position: fixed;
+    z-index: 1;
     top: 0;
     right: 0;
     bottom: 0;
