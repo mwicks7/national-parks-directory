@@ -14,7 +14,7 @@ const options = {
 function Map({ center, markers=[], zoom=9 }) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: "AIzaSyDWsJoBnD-v_WscQc0CSu4dzISfa7m3v1M"
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GMAPS_API_KEY
   })
 
   const [map, setMap] = React.useState(null)
