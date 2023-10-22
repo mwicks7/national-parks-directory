@@ -17,21 +17,18 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      parkCode: params.id,
       parkInfo: parkInfo,
       data: parkData.data,
     }
   }
 }
 
-export default function Articles({ parkCode, parkInfo, data }) {
-
+export default function Articles({ parkInfo, data }) {
   return (
     <Layout>
       <ParkPage
         pageTitle='Articles'
         parkInfo={parkInfo}
-        parkCode={parkCode}
       >
         {data.map((article) => (
           <MediaCard

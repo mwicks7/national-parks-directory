@@ -16,14 +16,13 @@ export async function getStaticProps({ params }) {
   const parkData = await getParkData('visitorcenters', params.id)
   return {
     props: {
-      parkCode: params.id,
       parkInfo: parkInfo,
       data: parkData.data,
     }
   }
 }
 
-export default function VisitorCenters({ parkCode, parkInfo, data }) {
+export default function VisitorCenters({ parkInfo, data }) {
   const markers = data.map(loc => {
     return {
       label: loc.name,
@@ -37,7 +36,6 @@ export default function VisitorCenters({ parkCode, parkInfo, data }) {
       <ParkPage
         pageTitle='Visitor Centers'
         parkInfo={parkInfo}
-        parkCode={parkCode}
         mapMarkers={markers}>
 
           {data.map((vc) => (
