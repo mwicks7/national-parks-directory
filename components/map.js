@@ -37,7 +37,7 @@ function Map({ center, markers=[], zoom=9 }) {
   }, [])
 
   return isLoaded ? (
-    <div className="park-map paper">
+    <div className="park-map">
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}

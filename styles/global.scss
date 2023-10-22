@@ -1,3 +1,7 @@
+// ---------------------------------------
+// Mixins
+// ---------------------------------------
+
 @mixin mq-small {
   @media (min-width: 600px) { @content; }
 }
@@ -10,6 +14,14 @@
   @media (min-width: 1024px) { @content; }
 }
 
+@mixin paper {
+  background: #ffffff;
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.12);
+}
+
+// ---------------------------------------
+// Global Styles
+// ---------------------------------------
 * {
   box-sizing: border-box;
 }
@@ -59,7 +71,11 @@ h2, .h2 {
   font-size: 28px;
 }
 
+// ---------------------------------------
+// Header
+// ---------------------------------------
 .header {
+  @include paper;
   position: sticky;
   top: 0;
   left: 0;
@@ -71,9 +87,6 @@ h2, .h2 {
   align-items: center;
   gap: 15px;
   background: #ffffff;
-  margin-bottom: 15px;
-
-  // font-weight: 400;
 }
 
   .header__menu-button {
@@ -107,17 +120,56 @@ h2, .h2 {
     }
   }
 
-main {}
-
-.container {
-  width: 500px;
-  max-width: 100%;
-  margin: 0 15px;
+// ---------------------------------------
+// Nav
+// ---------------------------------------
+.nav {
+  a {
+    display: inline-block;
+    padding: 5px;
+  }
 }
 
-.paper {
-  background: #ffffff;
-  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.12);
+// ---------------------------------------
+// Main
+// ---------------------------------------
+main {}
+
+
+// ---------------------------------------
+// Park Page
+// ---------------------------------------
+.park-page {
+  display: flex;
+  align-items: stretch;
+  gap: 15px;
+}
+
+.park-page__content {
+  width: 460px;
+}
+
+.park-page__main {
+  padding: 15px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.park-page__map {
+  position: fixed;
+  top: 50px;
+  right: 0px;
+  left: 460px;
+  bottom: 0px;
+}
+
+// ---------------------------------------
+// Park Map
+// ---------------------------------------
+
+.park-map {
+  @include paper;
+  height: 100%;
 }
 
 // ---------------------------------------
@@ -133,8 +185,8 @@ main {}
   }
 
     .park-listing__state-name {
-      margin-top: 0;
-      margin-bottom: 15px;
+      margin: 0 15px 15px;
+
     }
 
     .park-listing__parks {
@@ -152,6 +204,7 @@ main {}
 // Park Card
 // ---------------------------------------
 .park-card {
+  @include paper;
   width: 100%;
 }
 
@@ -182,22 +235,49 @@ main {}
   padding: 0 15px 15px;
 }
 
-
-.park-card__description {
-
-}
+.park-card__description {}
 
 .park-card__links {
   display: flex;
-  // gap: px;
-  justify-content: space-between;
-  margin-bottom: -2px;
 }
 
-  .park-card__link {
+
+// ---------------------------------------
+// Park Header
+// ---------------------------------------
+.park-header {
+  @include paper;
+  position: sticky;
+  top: 50px;
+  width: 100%;
+  padding: 15px 30px;
+}
+
+.park-header__name {
+  font-size: 28px;
+  color: #000000;
+  margin: 0;
+}
+
+.park-header__location {
+  margin-top: 0;
+  font-weight: 600;
+}
+
+.park-header__details {
+  padding: 0 15px 15px;
+}
+
+.park-header__links {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: -1px;
+}
+
+  .park-header__link {
     padding: 10px 0;
 
-    &.park-card__link--active {
+    &.park-header__link--active {
       border-bottom: 4px solid #1976d2;
     }
   }
@@ -206,6 +286,7 @@ main {}
 // Media Card
 // ---------------------------------------
 .media-card {
+  @include paper;
   width: 100%;
 }
 
@@ -226,60 +307,16 @@ main {}
   padding: 0 15px 15px 15px;
 }
 
-.media-card__location {
-  margin-top: 0;
-  // font-style: italic;
-  font-weight: 600;
-}
-
-.media-card__description {
-
-}
+.media-card__description {}
 
 .media-card__links {
+  margin-top: 1em;
   display: flex;
   gap: 25px;
-  margin-bottom: -2px;
 }
 
   .media-card__link {
     padding: 10px 0;
   }
-
-// ---------------------------------------
-// Park Page
-// ---------------------------------------
-.park-page {
-  padding: 0 15px;
-  display: flex;
-  align-items: stretch;
-  gap: 15px;
-}
-
-.park-page__content {
-  width: 460px;
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-}
-
-.park-page__map {
-  position: fixed;
-  top: 50px;
-  right: 0px;
-  left: 490px;
-  bottom: 0px;
-}
-
-.park-map {
-  height: 100%;
-}
-
-.primary-nav {
-  a {
-    display: inline-block;
-    padding: 5px;
-  }
-}
 
 @import 'drawer.scss';

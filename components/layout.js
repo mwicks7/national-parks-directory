@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { urlString } from '../lib/utilities'
 import Drawer from './drawer'
 
-export const siteTitle = 'US National Parks Map Directory'
+const siteTitle = 'US National Parks Map Directory'
 
 function getStates(parks) {
   let states = []
@@ -43,7 +43,7 @@ export default function Layout({ page, children }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <header className="header paper">
+      <header className="header">
         <button
           className="header__menu-button"
           onClick={() => setToggleNav((prev) => !prev)}
@@ -74,11 +74,15 @@ export default function Layout({ page, children }) {
         id="navDrawer"
         triggerId="navDrawerTrigger"
       >
-        <nav className="primary-nav">
-          <ul>
+        <nav className="nav">
+          <ul className="nav__items">
             {navItems.map((nav) => (
-              <li key={nav}>
+              <li
+                className="nav__item"
+                key={nav}
+              >
                 <Link
+                  className="nav__link"
                   href={'/#' + urlString(nav)}
                   onClick={() => setToggleNav(false)}
                 >{nav}</Link>

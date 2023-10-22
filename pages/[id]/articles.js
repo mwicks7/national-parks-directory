@@ -1,6 +1,6 @@
 import { getParkPaths, getParkInfo, getParkData } from '../../lib/dbParks'
 import Layout from '../../components/layout'
-import SubPage from '../../components/subPage'
+import ParkPage from '../../components/parkPage'
 import MediaCard from '../../components/mediaCard'
 
 export async function getStaticPaths() {
@@ -28,7 +28,7 @@ export default function Articles({ parkCode, parkInfo, data }) {
 
   return (
     <Layout>
-      <SubPage
+      <ParkPage
         pageTitle='Articles'
         parkInfo={parkInfo}
         parkCode={parkCode}
@@ -45,7 +45,7 @@ export default function Articles({ parkCode, parkInfo, data }) {
             ]}
           />
         ))}
-      </SubPage>
+      </ParkPage>
     </Layout>
   )
 }

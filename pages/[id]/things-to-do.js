@@ -1,6 +1,6 @@
 import { getParkPaths, getParkInfo, getParkData } from '../../lib/dbParks'
 import Layout from '../../components/layout'
-import SubPage from '../../components/subPage'
+import ParkPage from '../../components/parkPage'
 import MediaCard from '../../components/mediaCard'
 
 export async function getStaticPaths() {
@@ -27,12 +27,11 @@ export async function getStaticProps({ params }) {
 export default function Park({ parkCode, parkInfo, data }) {
   return (
     <Layout>
-      <SubPage
+      <ParkPage
         pageTitle="Things To Do"
         parkInfo={parkInfo}
         parkCode={parkCode}
       >
-        {console.log(data)}
         {data.map((todo) => (
           <MediaCard
             key={todo.id}
@@ -46,7 +45,7 @@ export default function Park({ parkCode, parkInfo, data }) {
             ]}
           />
         ))}
-      </SubPage>
+      </ParkPage>
     </Layout>
   )
 }

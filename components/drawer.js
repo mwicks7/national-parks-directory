@@ -13,6 +13,7 @@ export default function Drawer({ children, id, triggerId, location, toggleState,
 
     const content = document.getElementById(id)
     const trigger = document.getElementById(triggerId)
+
     const trapFocus = (e) => {
       if (content.contains(e.relatedTarget)) return
       content.focus()
@@ -34,7 +35,6 @@ export default function Drawer({ children, id, triggerId, location, toggleState,
     }, 300)
   }, [animateOut, toggleState, id, triggerId, setToggleState])
 
-
   return (
     <div
       className={`drawer drawer--${location} ${toggleState ? 'drawer--open' : ''} ${animateOut ? 'drawer--animate-out' : ''}`}
@@ -42,7 +42,7 @@ export default function Drawer({ children, id, triggerId, location, toggleState,
       aria-hidden={!toggleState}
     >
       <div className="drawer__content" tabIndex="0" id={id}>
-        <div className="drawer__header paper">
+        <div className="drawer__header">
           <h2 className="drawer__title">Jump to State</h2>
           <button className="drawer__close-button" onClick={() => setAnimateOut(true)}>
             <Image
@@ -58,7 +58,8 @@ export default function Drawer({ children, id, triggerId, location, toggleState,
           {children}
         </div>
       </div>
+
       <div className="drawer__backdrop" onClick={() => setAnimateOut(true)}></div>
-      </div>
+    </div>
   )
 }
