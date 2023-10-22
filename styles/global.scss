@@ -319,4 +319,13 @@ main {}
     padding: 10px 0;
   }
 
+
+// ---------------------------------------
+// Weather Data
+// ---------------------------------------
+.weather-data {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 @import 'drawer.scss';

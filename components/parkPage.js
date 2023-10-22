@@ -1,8 +1,7 @@
-import Link from 'next/link'
 import ParkHeader from './parkHeader'
 import Map from './map'
 
-export default function ParkPage({ parkCode, parkInfo, pageTitle, mapMarkers, children }) {
+export default function ParkPage({ parkInfo, pageTitle, mapMarkers, children }) {
   return (
     <div className="park-page">
       <div className="park-page__content">
