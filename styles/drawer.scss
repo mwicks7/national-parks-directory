@@ -28,10 +28,10 @@
 
   .drawer--left & {
     left: -350px;
-    transition: left .3s ease;
+    transition: left 0.3s ease;
   }
 
-  .drawer--left.drawer--open &  {
+  .drawer--left.drawer--open & {
     left: 0px;
   }
 
@@ -39,63 +39,65 @@
     left: -350px;
   }
 
-
-    .drawer--right & {
-      right: -350px;
-      transition: right .3s ease;
-
-      .drawer--open & {
-        right: 0;
-      }
-
-      .drawer--animate-out & {
-        right: -350px;
-      }
-    }
-}
-
-  .drawer__header {
-    @include paper;
-    position: sticky;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 15px;
-  }
-
-    .drawer__title {
-      margin: 0;
-      font-weight: 400;
-      font-size: 18px;
-    }
-
-    .drawer__close-button {
-      width: 50px;
-      height: 50px;
-      border-left: 1px solid rgba(0,0,0,.1);
-    }
-
-  .drawer__main {
-    padding: 15px;
-  }
-
-  .drawer__backdrop {
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: black;
-    opacity: 0;
-    transition: opacity .3s ease;
+  .drawer--right & {
+    right: -350px;
+    transition: right 0.3s ease;
 
     .drawer--open & {
-      opacity: .4;
+      right: 0;
     }
 
     .drawer--animate-out & {
-      opacity: 0;
+      right: -350px;
     }
   }
+}
+
+.drawer__header {
+  @include paper;
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 15px;
+}
+
+.drawer__title {
+  margin: 0;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.drawer__close-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.drawer__main {
+  padding: 15px;
+}
+
+.drawer__backdrop {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: black;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+
+  .drawer--open & {
+    opacity: 0.4;
+  }
+
+  .drawer--animate-out & {
+    opacity: 0;
+  }
+}
