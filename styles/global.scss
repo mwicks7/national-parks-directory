@@ -3,20 +3,26 @@
 // ---------------------------------------
 
 @mixin mq-small {
-  @media (min-width: 600px) { @content; }
+  @media (min-width: 600px) {
+    @content;
+  }
 }
 
 @mixin mq-med {
-  @media (min-width: 768px) { @content; }
+  @media (min-width: 768px) {
+    @content;
+  }
 }
 
 @mixin mq-lrg {
-  @media (min-width: 1024px) { @content; }
+  @media (min-width: 1024px) {
+    @content;
+  }
 }
 
 @mixin paper {
   background: #ffffff;
-  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.12);
+  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 }
 
 // ---------------------------------------
@@ -51,6 +57,7 @@ button {
 }
 
 img {
+  display: block;
   max-width: 100%;
 }
 
@@ -60,13 +67,15 @@ ul {
   list-style: none;
 }
 
-h1, .h1 {
+h1,
+.h1 {
   // margin: 0 0 5px;
   font-weight: 800;
   font-size: 36px;
 }
 
-h2, .h2 {
+h2,
+.h2 {
   font-weight: 800;
   font-size: 28px;
 }
@@ -99,36 +108,39 @@ h2, .h2 {
   background: #ffffff;
 }
 
-  .header__menu-button {
-    width: 50px;
-    height: 50px;
-    border-right: 1px solid rgba(0,0,0,0.1)
-  }
+.header__menu-button {
+  width: 50px;
+  height: 50px;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  .header__logo {
-    font-family: "Roboto","Helvetica","Arial",sans-serif;
-    display: flex;
-    align-items:center;
-    text-decoration: none;
-    color: rgba(0, 0, 0, 1);
-    font-size: 18px;
+.header__logo {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 1);
+  font-size: 18px;
 
-    img {
-      vertical-align: baseline;
-      margin-right: 10px;
-      width: 15px;
-      height: 15px;
-
-      @include mq-small {
-        width: 24px;
-        height: 24px;
-      }
-    }
+  img {
+    vertical-align: baseline;
+    margin-right: 10px;
+    width: 15px;
+    height: 15px;
 
     @include mq-small {
-      font-size: 18px;
+      width: 24px;
+      height: 24px;
     }
   }
+
+  @include mq-small {
+    font-size: 18px;
+  }
+}
 
 // ---------------------------------------
 // Nav
@@ -143,8 +155,8 @@ h2, .h2 {
 // ---------------------------------------
 // Main
 // ---------------------------------------
-main {}
-
+main {
+}
 
 // ---------------------------------------
 // Park Page
@@ -156,7 +168,7 @@ main {}
 }
 
 .park-page__content {
-  width: 460px;
+  width: 490px;
 }
 
 .park-page__main {
@@ -169,7 +181,7 @@ main {}
   position: fixed;
   top: 50px;
   right: 0px;
-  left: 460px;
+  left: 490px;
   bottom: 0px;
 }
 
@@ -190,25 +202,23 @@ main {}
   padding: 0 15px;
 }
 
-  .park-listing__state {
-    padding-top: 80px;
-  }
+.park-listing__state {
+  padding-top: 80px;
+}
 
-    .park-listing__state-name {
-      margin: 0 15px 15px;
+.park-listing__state-name {
+  margin: 0 15px 15px;
+}
 
-    }
+.park-listing__parks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
 
-    .park-listing__parks {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-      .park-listing__park {
-        width: 460px;
-      }
-
+.park-listing__park {
+  width: 460px;
+}
 
 // ---------------------------------------
 // Park Card
@@ -220,8 +230,12 @@ main {}
 
 .park-card__image {
   height: 300px;
-  background-size: cover;
-  background-position: center;
+
+  img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .park-card__header {
@@ -245,12 +259,12 @@ main {}
   padding: 0 15px 15px;
 }
 
-.park-card__description {}
+.park-card__description {
+}
 
 .park-card__links {
   display: flex;
 }
-
 
 // ---------------------------------------
 // Park Header
@@ -284,13 +298,13 @@ main {}
   margin-bottom: -1px;
 }
 
-  .park-header__link {
-    padding: 10px 0;
+.park-header__link {
+  padding: 10px 0;
 
-    &.park-header__link--active {
-      border-bottom: 4px solid #1976d2;
-    }
+  &.park-header__link--active {
+    border-bottom: 4px solid #1976d2;
   }
+}
 
 // ---------------------------------------
 // Media Card
@@ -317,7 +331,8 @@ main {}
   padding: 0 15px 15px 15px;
 }
 
-.media-card__description {}
+.media-card__description {
+}
 
 .media-card__links {
   margin-top: 1em;
@@ -325,9 +340,9 @@ main {}
   gap: 25px;
 }
 
-  .media-card__link {
-    padding: 10px 0;
-  }
+.media-card__link {
+  padding: 10px 0;
+}
 
 // ---------------------------------------
 // Weather Data
@@ -338,8 +353,7 @@ main {}
   gap: 5px;
 }
 
-
 // ---------------------------------------
 // Drawer
 // ---------------------------------------
-@import 'drawer.scss';
+@import "drawer.scss";
