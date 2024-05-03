@@ -6,8 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@googlemaps/js-api-loader": "^1.15.1",
-    "@react-google-maps/api": "^2.18.1",
+    "@vis.gl/react-google-maps": "^0.10.0",
     "mongodb": "^4.8.1",
     "next": "latest",
     "react": "^18.2.0",
