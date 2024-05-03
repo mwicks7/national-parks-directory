@@ -1,15 +1,16 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useState, useEffect } from 'react'
-import { urlString } from '../lib/utilities'
-import Drawer from './drawer'
+import Head from "next/head"
+import Link from "next/link"
+import Image from "next/image"
+import { useRouter } from "next/router"
+import { useState, useEffect } from "react"
+import { urlString } from "../lib/utilities"
+import Drawer from "./drawer"
 
-const siteTitle = 'US National Parks Map Directory'
+const siteTitle = "US National Parks Map Directory"
 
 function getStates(parks) {
   let states = []
-  parks.map(park => {
+  parks.map((park) => {
     if (!states.includes(park.location.stateFull)) {
       states.push(park.location.stateFull)
     }
@@ -20,10 +21,11 @@ function getStates(parks) {
 export default function Layout({ page, children }) {
   const [toggleNav, setToggleNav] = useState(false)
   const [navItems, setNavItems] = useState([])
+  const { pathname } = useRouter()
 
   useEffect(() => {
     const fetchParks = async () => {
-      const response = await fetch('/api/parks')
+      const response = await fetch("/api/parks")
       const parks = await response.json()
       const states = getStates(parks)
       setNavItems(states)
@@ -37,7 +39,10 @@ export default function Layout({ page, children }) {
       <Head>
         <link rel="icon" href="/favicon.png" />
         <title>{siteTitle}</title>
-        <meta name="description" content="Learn about The United States national parks" />
+        <meta
+          name="description"
+          content="Learn about The United States national parks"
+        />
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
@@ -49,22 +54,21 @@ export default function Layout({ page, children }) {
           id="navDrawerTrigger"
         >
           <Image
-            src={'/images/menu.svg'}
+            src={"/images/arrow-down.svg"}
             height={30}
             width={30}
             alt="Open navigation"
           />
+          Jump to state
         </button>
 
         <Link className="header__logo" href="/">
-          <Image src="/images/npd_logo.svg" height={24} width={24} alt="Logo"/>
-          US National Parks Directory
+          <Image src="/images/npd_logo.svg" height={24} width={24} alt="Logo" />
+          {pathname === "/" ? <h1>{siteTitle}</h1> : <>{siteTitle}</>}
         </Link>
       </header>
 
-      <main>
-        {children}
-      </main>
+      <main>{children}</main>
 
       <Drawer
         location="left"
@@ -76,15 +80,14 @@ export default function Layout({ page, children }) {
         <nav className="nav">
           <ul className="nav__items">
             {navItems.map((nav) => (
-              <li
-                className="nav__item"
-                key={nav}
-              >
+              <li className="nav__item" key={nav}>
                 <Link
                   className="nav__link"
-                  href={'/#' + urlString(nav)}
+                  href={"/#" + urlString(nav)}
                   onClick={() => setToggleNav(false)}
-                >{nav}</Link>
+                >
+                  {nav}
+                </Link>
               </li>
             ))}
           </ul>

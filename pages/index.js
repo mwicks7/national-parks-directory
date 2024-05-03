@@ -1,7 +1,7 @@
 import { getAllParks } from "../lib/dbParks"
-import { urlString } from '../lib/utilities'
-import Layout from '../components/layout'
-import ParkCard from '../components/parkCard'
+import { urlString } from "../lib/utilities"
+import Layout from "../components/layout"
+import ParkCard from "../components/parkCard"
 
 export async function getStaticProps() {
   const parks = await getAllParks()
@@ -11,14 +11,14 @@ export async function getStaticProps() {
 function groupByState(parks) {
   let states = []
 
-  parks.map(park => {
+  parks.map((park) => {
     const { stateFull } = park.location
-    const groupedState = states?.find( state => state.stateFull === stateFull)
+    const groupedState = states?.find((state) => state.stateFull === stateFull)
 
     if (groupedState) {
       groupedState.parks.push(park)
     } else {
-      const newState = {stateFull, parks: [park]}
+      const newState = { stateFull, parks: [park] }
       states.push(newState)
     }
   })
@@ -32,15 +32,15 @@ export default function Home({ parks }) {
   return (
     <Layout page="Home">
       <div className="park-listing">
-        {parksByState.map(state => (
+        {parksByState.map((state) => (
           <div
             className="park-listing__state"
             id={urlString(state.stateFull)}
             key={urlString(state.stateFull)}
           >
-            <h1 className="park-listing__state-name h1">{state.stateFull}</h1>
+            <h2 className="park-listing__state-name h1">{state.stateFull}</h2>
             <div className="park-listing__parks">
-              {state.parks.map(park => (
+              {state.parks.map((park) => (
                 <div
                   className="park-listing__park"
                   key={`park-listing-${urlString(park.name)}`}
