@@ -1,32 +1,40 @@
-import { getParkPaths, getParkInfo, getParkData } from '../../lib/dbParks'
-import { getCurrentWeather } from '../../lib/weatherApi'
-import Layout from '../../components/layout'
-import ParkPage from '../../components/parkPage'
-import MediaCard from '../../components/mediaCard'
-import { useState, useEffect } from "react";
+import { getParkPaths, getParkInfo, getParkData } from "../../lib/dbParks"
+import { getCurrentWeather } from "../../lib/weatherApi"
+import Layout from "../../components/layout"
+import ParkPage from "../../components/parkPage"
+import MediaCard from "../../components/mediaCard"
+import { useState, useEffect } from "react"
 
 export async function getStaticPaths() {
   const paths = await getParkPaths()
   return {
     paths,
     fallback: false,
-  };
+  }
 }
 
 export async function getStaticProps({ params }) {
   const parkInfo = await getParkInfo(params.id)
-  const parkData = await getParkData('info', params.id)
+  const parkData = await getParkData("info", params.id)
 
   return {
     props: {
       parkInfo: parkInfo,
       data: parkData.data[0],
-    }
+    },
   }
 }
 
 export default function Park({ parkInfo, data }) {
-  const [weatherData, setWeatherData] = useState({});
+  const markers = [
+    {
+      label: data.fullName,
+      lat: Number(data.latitude),
+      lng: Number(data.longitude),
+    },
+  ]
+
+  const [weatherData, setWeatherData] = useState({})
 
   const handleGetCurrentWeather = async (lat, lng) => {
     const response = await getCurrentWeather(lat, lng)
@@ -39,40 +47,35 @@ export default function Park({ parkInfo, data }) {
 
   return (
     <Layout>
-      <ParkPage
-        parkInfo={parkInfo}
-        pageTitle='Info'
-      >
+      <ParkPage parkInfo={parkInfo} pageTitle="Info" mapMarkers={markers}>
         <>
           <MediaCard
             img={`/images/${parkInfo.parkCode}.jpg`}
             title="About"
             description={parkInfo.description}
             links={[
-              {href: `https://nps.gov/${parkInfo.parkCode}`, text: 'Read more at nps.gov'}
+              {
+                href: `https://nps.gov/${parkInfo.parkCode}`,
+                text: "Read more at nps.gov",
+              },
             ]}
           />
 
-          <MediaCard
-            title="Directions"
-            description={data.directionsInfo}
-          />
+          <MediaCard title="Directions" description={data.directionsInfo} />
 
-          <MediaCard
-            title="Weather Info"
-            description={data.weatherInfo}
-          />
-
-          <MediaCard
-            title="Current Weather"
-          >
-            {weatherData.current &&
+          <MediaCard title="Weather Info" description={data.weatherInfo}>
+            {weatherData.current && (
               <div className="weather-data">
-                <div>{weatherData.current.temp_f}&#8457;</div>
-                <div><img aria-hidden="true" src={`https:${weatherData.current.condition.icon}`} /></div>
-                <div>{weatherData.current.condition.text}</div>
+                <img
+                  aria-hidden="true"
+                  src={`https:${weatherData.current.condition.icon}`}
+                />
+                <p>
+                  Currently {weatherData.current.temp_f}&deg; (
+                  {weatherData.current.condition.text})
+                </p>
               </div>
-            }
+            )}
           </MediaCard>
         </>
       </ParkPage>
