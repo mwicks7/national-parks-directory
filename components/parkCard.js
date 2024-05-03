@@ -1,12 +1,12 @@
-import Link from "next/link";
-import Image from "next/image";
+import Link from "next/link"
+import Image from "next/image"
 
 export default function ParkCard({ park }) {
   return (
     <div key={park.parkCode} className="park-card">
       <div className="park-card__header">
         <Link href={`/${park.parkCode}/park`}>
-          <h2 className="park-card__name">{park.name}</h2>
+          <h3 className="park-card__name">{park.name}</h3>
         </Link>
         <p className="park-card__location">
           {park.location.city}, {park.location.state}
@@ -16,14 +16,13 @@ export default function ParkCard({ park }) {
       <Link href={`/${park.parkCode}/park`}>
         <div className="park-card__image">
           <Image
-            src={`/images/${park.parkCode}.jpg`}
+            src={`/images/original/${park.parkCode}.jpg`}
             height={300}
-            width={460}
+            width={900}
             quality={100}
             loading="lazy"
-            sizes="460px"
+            sizes="900px"
             alt=""
-            unoptimized
           />
         </div>
       </Link>
@@ -35,5 +34,5 @@ export default function ParkCard({ park }) {
         </div>
       </div>
     </div>
-  );
+  )
 }

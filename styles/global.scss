@@ -36,6 +36,7 @@ body {
   background: #fafafa;
   margin: 0 0 100px;
   font-size: 0.875rem;
+  line-height: 1.25;
 }
 
 p {
@@ -69,14 +70,13 @@ ul {
 
 h1,
 .h1 {
-  // margin: 0 0 5px;
   font-weight: 800;
-  font-size: 36px;
+  font-size: 46px;
 }
 
 h2,
 .h2 {
-  font-weight: 800;
+  font-weight: 500;
   font-size: 28px;
 }
 
@@ -97,24 +97,28 @@ h2,
   @include paper;
   position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
   height: 50px;
   background: #fff;
   z-index: 10;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 15px;
   background: #ffffff;
 }
 
 .header__menu-button {
-  width: 50px;
-  height: 50px;
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 180px;
   border-right: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
-  justify-content: center;
+
+  gap: 10px;
+  padding: 0 15px;
 }
 
 .header__logo {
@@ -135,6 +139,11 @@ h2,
       width: 24px;
       height: 24px;
     }
+  }
+
+  h1 {
+    font-size: inherit;
+    font-weight: inherit;
   }
 
   @include mq-small {
@@ -203,21 +212,25 @@ main {
 }
 
 .park-listing__state {
-  padding-top: 80px;
+  padding-top: 120px;
 }
 
 .park-listing__state-name {
-  margin: 0 15px 15px;
+  margin: 0 15px 25px;
+  text-align: center;
 }
 
 .park-listing__parks {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 15px;
+  width: 900px;
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 .park-listing__park {
-  width: 460px;
+  width: 100%;
 }
 
 // ---------------------------------------
@@ -243,7 +256,8 @@ main {
 }
 
 .park-card__name {
-  font-size: 24px;
+  font-size: 28px;
+  font-weight: 500;
   color: #000000;
   margin: 0;
 }
@@ -251,8 +265,7 @@ main {
 .park-card__location {
   margin-top: 0;
   margin-bottom: 0;
-  // font-style: italic;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .park-card__details {
@@ -278,14 +291,13 @@ main {
 }
 
 .park-header__name {
-  font-size: 28px;
   color: #000000;
   margin: 0;
 }
 
 .park-header__location {
   margin-top: 0;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .park-header__details {
