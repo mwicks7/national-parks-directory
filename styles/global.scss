@@ -177,21 +177,72 @@ main {
 }
 
 .park-page__content {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  bottom: 0;
   width: 490px;
 }
 
 .park-page__main {
+  position: absolute;
+  overflow-y: auto;
+  top: 116.5px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   padding: 15px;
   display: flex;
   gap: 15px;
   flex-wrap: wrap;
 }
+
 .park-page__map {
   position: fixed;
   top: 50px;
   right: 0px;
   left: 490px;
   bottom: 0px;
+}
+
+// ---------------------------------------
+// Park Header
+// ---------------------------------------
+
+.park-header {
+  @include paper;
+  position: sticky;
+  top: 50px;
+  width: 100%;
+  padding: 15px 30px;
+}
+
+.park-header__name {
+  color: #000000;
+  margin: 0;
+}
+
+.park-header__location {
+  margin-top: 0;
+  font-weight: 400;
+}
+
+.park-header__details {
+  padding: 0 15px 15px;
+}
+
+.park-header__links {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: -1px;
+}
+
+.park-header__link {
+  padding: 10px 0;
+
+  &.park-header__link--active {
+    border-bottom: 4px solid #1976d2;
+  }
 }
 
 // ---------------------------------------
@@ -283,45 +334,6 @@ main {
 
 .park-card__details {
   padding: 0 15px 15px;
-}
-
-// ---------------------------------------
-// Park Header
-// ---------------------------------------
-.park-header {
-  @include paper;
-  position: sticky;
-  top: 50px;
-  width: 100%;
-  padding: 15px 30px;
-}
-
-.park-header__name {
-  color: #000000;
-  margin: 0;
-}
-
-.park-header__location {
-  margin-top: 0;
-  font-weight: 400;
-}
-
-.park-header__details {
-  padding: 0 15px 15px;
-}
-
-.park-header__links {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: -1px;
-}
-
-.park-header__link {
-  padding: 10px 0;
-
-  &.park-header__link--active {
-    border-bottom: 4px solid #1976d2;
-  }
 }
 
 // ---------------------------------------
