@@ -85,7 +85,7 @@ export default function Park({ parkInfo, data }) {
           </MediaCard>
 
           {data.images.map((image, i) => {
-            return i === 0 ? (
+            return i !== 0 ? (
               <MediaCard
                 title={i === 1 ? "Photos" : null}
                 img={{

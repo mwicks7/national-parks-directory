@@ -39,9 +39,9 @@ export default function Home({ parks }) {
             key={urlString(state.stateFull)}
           >
             <h2 className="park-listing__state-name h1">{state.stateFull}</h2>
-            <div className="park-listing__parks">
+            <ul className="park-listing__parks">
               {state.parks.map((park, i) => (
-                <div
+                <li
                   className="park-listing__park"
                   key={`park-listing-${urlString(park.name)}`}
                 >
@@ -49,9 +49,9 @@ export default function Home({ parks }) {
                     park={park}
                     imgLoading={i == 0 ? "eager" : "lazy"}
                   />
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         ))}
       </div>
