@@ -39,13 +39,14 @@ export default function VisitorCenters({ parkInfo, data }) {
         mapMarkers={markers}
       >
         {data.length > 0 ? (
-          data.map((visitorCenter) => (
+          data.map((visitorCenter, i) => (
             <MediaCard
               key={visitorCenter.id}
               img={
                 visitorCenter.images?.[0]?.url && {
                   url: `${visitorCenter.images[0].url}?quality=75&width=600`,
                   altText: visitorCenter.images[0].altText,
+                  loading: i <= 1 ? "eager" : "lazy",
                 }
               }
               title={visitorCenter.name}

@@ -40,13 +40,14 @@ export default function Park({ parkInfo, data }) {
         mapMarkers={markers}
       >
         {data.length > 0 ? (
-          data.map((todo) => (
+          data.map((todo, i) => (
             <MediaCard
               key={todo.id}
               img={
                 todo.images?.[0]?.url && {
                   url: `${todo.images[0].url}?quality=75&width=600`,
                   altText: todo.images[0].altText,
+                  loading: i <= 1 ? "eager" : "lazy",
                 }
               }
               imgHeight={300}

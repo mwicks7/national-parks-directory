@@ -35,13 +35,14 @@ export default function Trails({ parkInfo, data }) {
     <Layout>
       <ParkPage pageTitle="Trails" parkInfo={parkInfo} mapMarkers={markers}>
         {data.length > 0 ? (
-          data.map((trails) => (
+          data.map((trails, i) => (
             <MediaCard
               key={trails.id}
               img={
                 trails.images?.[0]?.url && {
                   url: `${trails.images[0].url}?quality=75&width=600`,
                   altText: trails.images[0].altText,
+                  loading: i <= 1 ? "eager" : "lazy",
                 }
               }
               imgHeight={170}

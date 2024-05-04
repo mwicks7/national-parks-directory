@@ -36,13 +36,14 @@ export default function Camping({ parkInfo, data }) {
     <Layout>
       <ParkPage pageTitle="Camping" parkInfo={parkInfo} mapMarkers={markers}>
         {data.length > 0 ? (
-          data.map((campground) => (
+          data.map((campground, i) => (
             <MediaCard
               key={campground.id}
               img={
                 campground.images?.[0]?.url && {
                   url: `${campground.images[0].url}?quality=75&width=600`,
                   altText: campground.images[0].altText,
+                  loading: i <= 1 ? "eager" : "lazy",
                 }
               }
               imgHeight={170}

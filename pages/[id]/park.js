@@ -54,6 +54,7 @@ export default function Park({ parkInfo, data }) {
               data.images.length > 0 && {
                 url: `${data.images[0].url}?quality=75&width=600`,
                 altText: data.images[0].altText,
+                loading: "eager",
               }
             }
             title="About"

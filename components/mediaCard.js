@@ -20,7 +20,7 @@ export default function MediaCard({
           alt={img.altText}
           height={300}
           width={460}
-          loading="lazy"
+          loading={img.loading ? img.loading : "lazy"}
         />
       )}
 
