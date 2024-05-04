@@ -41,7 +41,7 @@ body {
 
 p {
   font-weight: 400;
-  line-height: 1.43;
+  line-height: 1.5;
   color: rgba(0, 0, 0, 0.6);
 }
 
@@ -239,6 +239,7 @@ main {
 .park-card {
   @include paper;
   width: 100%;
+  position: relative;
 }
 
 .park-card__image {
@@ -258,8 +259,20 @@ main {
 .park-card__name {
   font-size: 28px;
   font-weight: 500;
-  color: #000000;
   margin: 0;
+}
+
+.park-card__link {
+  color: #000000;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
 }
 
 .park-card__location {
@@ -270,13 +283,6 @@ main {
 
 .park-card__details {
   padding: 0 15px 15px;
-}
-
-.park-card__description {
-}
-
-.park-card__links {
-  display: flex;
 }
 
 // ---------------------------------------

@@ -40,12 +40,15 @@ export default function Home({ parks }) {
           >
             <h2 className="park-listing__state-name h1">{state.stateFull}</h2>
             <div className="park-listing__parks">
-              {state.parks.map((park) => (
+              {state.parks.map((park, i) => (
                 <div
                   className="park-listing__park"
                   key={`park-listing-${urlString(park.name)}`}
                 >
-                  <ParkCard park={park} />
+                  <ParkCard
+                    park={park}
+                    imgLoading={i == 0 ? "eager" : "lazy"}
+                  />
                 </div>
               ))}
             </div>
