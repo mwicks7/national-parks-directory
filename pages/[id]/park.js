@@ -82,6 +82,19 @@ export default function Park({ parkInfo, data }) {
               </div>
             )}
           </MediaCard>
+
+          {data.images.map((image, i) => {
+            return i === 0 ? (
+              <MediaCard
+                title={i === 1 ? "Photos" : null}
+                img={{
+                  url: `${image.url}?quality=75&width=600`,
+                  altText: image.altText,
+                }}
+                description={image.caption}
+              ></MediaCard>
+            ) : null
+          })}
         </>
       </ParkPage>
     </Layout>

@@ -1,5 +1,4 @@
 import ParkHeader from "./parkHeader"
-// import Map from './map'
 import Map from "./Map/Map"
 
 export default function ParkPage({

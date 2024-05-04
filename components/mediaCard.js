@@ -33,11 +33,13 @@ export default function MediaCard({
 
         {links && (
           <div className="media-card__links">
-            {links.map((link) => (
-              <Link key={link.text} href={link.href}>
-                {link.text}
-              </Link>
-            ))}
+            {links.map((link) => {
+              return link.href ? (
+                <Link key={link.text} href={link.href}>
+                  {link.text}
+                </Link>
+              ) : null
+            })}
           </div>
         )}
       </div>

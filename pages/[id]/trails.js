@@ -34,22 +34,26 @@ export default function Trails({ parkInfo, data }) {
   return (
     <Layout>
       <ParkPage pageTitle="Trails" parkInfo={parkInfo} mapMarkers={markers}>
-        {data.map((trails) => (
-          <MediaCard
-            key={trails.id}
-            img={
-              trails.images.length > 0 && {
-                url: `${trails.images[0].url}?quality=75&width=600`,
-                altText: trails.images[0].altText,
+        {data.length > 0 ? (
+          data.map((trails) => (
+            <MediaCard
+              key={trails.id}
+              img={
+                trails.images?.[0]?.url && {
+                  url: `${trails.images[0].url}?quality=75&width=600`,
+                  altText: trails.images[0].altText,
+                }
               }
-            }
-            imgHeight={170}
-            title={trails.title}
-            subtitle=""
-            description={trails.listingDescription}
-            links={[{ href: trails.url, text: "Read more at nps.gov" }]}
-          />
-        ))}
+              imgHeight={170}
+              title={trails.title}
+              subtitle=""
+              description={trails.listingDescription}
+              links={[{ href: trails.url, text: "Read more at nps.gov" }]}
+            />
+          ))
+        ) : (
+          <p className="no-results">No results.</p>
+        )}
       </ParkPage>
     </Layout>
   )

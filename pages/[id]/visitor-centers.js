@@ -38,21 +38,27 @@ export default function VisitorCenters({ parkInfo, data }) {
         parkInfo={parkInfo}
         mapMarkers={markers}
       >
-        {data.map((visitorCenter) => (
-          <MediaCard
-            key={visitorCenter.id}
-            img={
-              visitorCenter.images.length > 0 && {
-                url: `${visitorCenter.images[0].url}?quality=75&width=600`,
-                altText: visitorCenter.images[0].altText,
+        {data.length > 0 ? (
+          data.map((visitorCenter) => (
+            <MediaCard
+              key={visitorCenter.id}
+              img={
+                visitorCenter.images?.[0]?.url && {
+                  url: `${visitorCenter.images[0].url}?quality=75&width=600`,
+                  altText: visitorCenter.images[0].altText,
+                }
               }
-            }
-            title={visitorCenter.name}
-            subtitle=""
-            description={visitorCenter.description}
-            links={[{ href: visitorCenter.url, text: "Read more at nps.gov" }]}
-          />
-        ))}
+              title={visitorCenter.name}
+              subtitle=""
+              description={visitorCenter.description}
+              links={[
+                { href: visitorCenter.url, text: "Read more at nps.gov" },
+              ]}
+            />
+          ))
+        ) : (
+          <p className="no-results">No results.</p>
+        )}
       </ParkPage>
     </Layout>
   )
