@@ -50,7 +50,12 @@ export default function Park({ parkInfo, data }) {
       <ParkPage parkInfo={parkInfo} pageTitle="Info" mapMarkers={markers}>
         <>
           <MediaCard
-            img={`/images/${parkInfo.parkCode}.jpg`}
+            img={
+              data.images.length > 0 && {
+                url: `${data.images[0].url}?quality=75&width=600`,
+                altText: data.images[0].altText,
+              }
+            }
             title="About"
             description={parkInfo.description}
             links={[

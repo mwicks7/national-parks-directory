@@ -328,8 +328,7 @@ main {
 
 .media-card__image {
   height: 300px;
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
 }
 
 .media-card__details {

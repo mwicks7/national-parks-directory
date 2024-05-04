@@ -43,9 +43,10 @@ export default function Park({ parkInfo, data }) {
           <MediaCard
             key={todo.id}
             img={
-              todo.images.length
-                ? `${todo.images[0].url}?quality=90&width=1000`
-                : ""
+              todo.images.length > 0 && {
+                url: `${todo.images[0].url}?quality=75&width=600`,
+                altText: todo.images[0].altText,
+              }
             }
             imgHeight={300}
             title={todo.title}
