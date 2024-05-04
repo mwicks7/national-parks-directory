@@ -50,7 +50,13 @@ export default function Park({ parkInfo, data }) {
       <ParkPage parkInfo={parkInfo} pageTitle="Info" mapMarkers={markers}>
         <>
           <MediaCard
-            img={`/images/${parkInfo.parkCode}.jpg`}
+            img={
+              data.images.length > 0 && {
+                url: `${data.images[0].url}?quality=75&width=600`,
+                altText: data.images[0].altText,
+                loading: "eager",
+              }
+            }
             title="About"
             description={parkInfo.description}
             links={[
@@ -77,6 +83,19 @@ export default function Park({ parkInfo, data }) {
               </div>
             )}
           </MediaCard>
+
+          {data.images.map((image, i) => {
+            return i === 0 ? (
+              <MediaCard
+                title={i === 1 ? "Photos" : null}
+                img={{
+                  url: `${image.url}?quality=75&width=600`,
+                  altText: image.altText,
+                }}
+                description={image.caption}
+              ></MediaCard>
+            ) : null
+          })}
         </>
       </ParkPage>
     </Layout>

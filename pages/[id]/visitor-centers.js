@@ -1,56 +1,65 @@
-import { getParkPaths, getParkInfo, getParkData } from '../../lib/dbParks'
-import Layout from '../../components/layout'
-import ParkPage from '../../components/parkPage'
-import MediaCard from '../../components/mediaCard'
+import { getParkPaths, getParkInfo, getParkData } from "../../lib/dbParks"
+import Layout from "../../components/layout"
+import ParkPage from "../../components/parkPage"
+import MediaCard from "../../components/mediaCard"
 
 export async function getStaticPaths() {
   const paths = await getParkPaths()
   return {
     paths,
     fallback: false,
-  };
+  }
 }
 
 export async function getStaticProps({ params }) {
   const parkInfo = await getParkInfo(params.id)
-  const parkData = await getParkData('visitorcenters', params.id)
+  const parkData = await getParkData("visitorcenters", params.id)
   return {
     props: {
       parkInfo: parkInfo,
       data: parkData.data,
-    }
+    },
   }
 }
 
 export default function VisitorCenters({ parkInfo, data }) {
-  const markers = data.map(loc => {
+  const markers = data.map((loc) => {
     return {
       label: loc.name,
       lat: Number(loc.latitude),
-      lng: Number(loc.longitude)
+      lng: Number(loc.longitude),
     }
   })
 
   return (
     <Layout>
       <ParkPage
-        pageTitle='Visitor Centers'
+        pageTitle="Visitor Centers"
         parkInfo={parkInfo}
-        mapMarkers={markers}>
-
-          {data.map((vc) => (
+        mapMarkers={markers}
+      >
+        {data.length > 0 ? (
+          data.map((visitorCenter, i) => (
             <MediaCard
-              key={vc.id}
-              img={vc.images.length ? `${vc.images[0].url}?quality=90&width=1000` : ''}
-              imgHeight={170}
-              title={vc.name}
-              subtitle=''
-              description={vc.description}
+              key={visitorCenter.id}
+              img={
+                visitorCenter.images?.[0]?.url && {
+                  url: `${visitorCenter.images[0].url}?quality=75&width=600`,
+                  altText: visitorCenter.images[0].altText,
+                  loading: i <= 1 ? "eager" : "lazy",
+                }
+              }
+              title={visitorCenter.name}
+              subtitle=""
+              description={visitorCenter.description}
               links={[
-                {href: vc.url, text: 'Read more at nps.gov'}
+                { href: visitorCenter.url, text: "Read more at nps.gov" },
               ]}
             />
-          ))}
+          ))
+        ) : (
+          <p className="no-results">No results.</p>
+        )}
       </ParkPage>
     </Layout>
   )

@@ -328,8 +328,7 @@ main {
 
 .media-card__image {
   height: 300px;
-  background-size: cover;
-  background-position: center;
+  object-fit: cover;
 }
 
 .media-card__details {
@@ -369,3 +368,10 @@ main {
 // Drawer
 // ---------------------------------------
 @import "drawer.scss";
+
+// ---------------------------------------
+// Misc
+// ---------------------------------------
+.no-results {
+  padding: 0 17px;
+}

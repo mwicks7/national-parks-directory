@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { urlString } from "../lib/utilities";
+import Link from "next/link"
+import { urlString } from "../lib/utilities"
 
 export default function ParkHeader({ park, pageTitle }) {
   const nav = [
@@ -8,7 +8,6 @@ export default function ParkHeader({ park, pageTitle }) {
       text: "Info",
       active: pageTitle === "Info",
     },
-    // {href: `/${park.parkCode}/photos/`, text: 'Photos', active: pageTitle === 'Photos'},
     {
       href: `/${park.parkCode}/visitor-centers/`,
       text: "Visitor Centers",
@@ -29,8 +28,17 @@ export default function ParkHeader({ park, pageTitle }) {
       text: "Things To Do",
       active: pageTitle === "Things To Do",
     },
-    // {href: `${park.parkCode}`/articles/, text: 'Articles', active: pageTitle === 'Articles'}
-  ];
+    // {
+    //   href: `/${park.parkCode}/photos/`,
+    //   text: "Photos",
+    //   active: pageTitle === "Photos",
+    // },
+    // {
+    //   href: `${park.parkCode}/articles/`,
+    //   text: "Articles",
+    //   active: pageTitle === "Articles",
+    // },
+  ]
 
   return (
     <div key={park.parkCode} className="park-header">
@@ -55,5 +63,5 @@ export default function ParkHeader({ park, pageTitle }) {
         </ul>
       </nav>
     </div>
-  );
+  )
 }

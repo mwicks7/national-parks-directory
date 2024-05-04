@@ -39,21 +39,27 @@ export default function Park({ parkInfo, data }) {
         parkInfo={parkInfo}
         mapMarkers={markers}
       >
-        {data.map((todo) => (
-          <MediaCard
-            key={todo.id}
-            img={
-              todo.images.length
-                ? `${todo.images[0].url}?quality=90&width=1000`
-                : ""
-            }
-            imgHeight={300}
-            title={todo.title}
-            subtitle=""
-            description={todo.shortDescription}
-            links={[{ href: todo.url, text: "Read more at nps.gov" }]}
-          />
-        ))}
+        {data.length > 0 ? (
+          data.map((todo, i) => (
+            <MediaCard
+              key={todo.id}
+              img={
+                todo.images?.[0]?.url && {
+                  url: `${todo.images[0].url}?quality=75&width=600`,
+                  altText: todo.images[0].altText,
+                  loading: i <= 1 ? "eager" : "lazy",
+                }
+              }
+              imgHeight={300}
+              title={todo.title}
+              subtitle=""
+              description={todo.shortDescription}
+              links={[{ href: todo.url, text: "Read more at nps.gov" }]}
+            />
+          ))
+        ) : (
+          <p className="no-results">No results.</p>
+        )}
       </ParkPage>
     </Layout>
   )
