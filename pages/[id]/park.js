@@ -29,8 +29,8 @@ export default function Park({ parkInfo, data }) {
   const markers = [
     {
       label: data.fullName,
-      lat: Number(data.latitude),
-      lng: Number(data.longitude),
+      lat: Number(parkInfo.latitude),
+      lng: Number(parkInfo.longitude),
     },
   ]
 
