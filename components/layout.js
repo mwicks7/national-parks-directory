@@ -55,11 +55,11 @@ export default function Layout({ page, children }) {
         >
           <Image
             src={"/images/arrow-down.svg"}
-            height={30}
-            width={30}
+            height={15}
+            width={15}
             alt="Open navigation"
           />
-          Jump to state
+          <b>States</b>
         </button>
 
         <Link className="header__logo" href="/">
