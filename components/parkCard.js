@@ -17,7 +17,7 @@ export default function ParkCard({ park, imgLoading = "lazy" }) {
 
       <div className="park-card__image">
         <Image
-          src={`/images/original/${park.parkCode}.jpg`}
+          src={`/images/parks/original/${park.parkCode}.jpg`}
           height={300}
           width={900}
           quality={100}
