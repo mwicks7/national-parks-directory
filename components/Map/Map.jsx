@@ -1,7 +1,13 @@
 import { APIProvider, Map as GMap } from "@vis.gl/react-google-maps"
 import MapMarker from "./MapMarker"
 
-const Map = ({ center, markers = [], openMarker, zoom = 10 }) => {
+const Map = ({
+  center,
+  markers = [],
+  openMarker,
+  setOpenMarker,
+  zoom = 10,
+}) => {
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GMAPS_API_KEY}>
       <GMap
@@ -14,7 +20,8 @@ const Map = ({ center, markers = [], openMarker, zoom = 10 }) => {
           <MapMarker
             parkMarker={marker}
             key={marker.id}
-            openMarker={marker.id === openMarker}
+            isOpen={marker.id === openMarker}
+            setOpenMarker={setOpenMarker}
           />
         ))}
       </GMap>

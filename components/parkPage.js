@@ -33,32 +33,40 @@ export default function ParkPage({
           <ParkHeader park={parkInfo} pageTitle={pageTitle} />
           <div className="park-page__main">
             {children}
-            {data &&
-              (data.length > 0 ? (
-                data.map((node, i) => (
-                  <MediaCard
-                    onMouseEnter={() => setOpenMarker(node.id)}
-                    key={node.id}
-                    img={
-                      node.images?.[0]?.url && {
-                        url: `${node.images[0].url}?quality=75&width=600`,
-                        altText: node.images[0].altText,
-                        loading: i <= 1 ? "eager" : "lazy",
-                      }
-                    }
-                    title={node.name || node.title}
-                    subtitle=""
-                    description={
-                      node.description ||
-                      node.shortDescription ||
-                      node.listingDescription
-                    }
-                    links={[{ href: node.url, text: "Read more at nps.gov" }]}
-                  />
-                ))
-              ) : (
-                <p className="no-results">No results.</p>
-              ))}
+
+            <ul className="park-page__cards">
+              {data &&
+                (data.length > 0 ? (
+                  data.map((node, i) => (
+                    <li className="park-page__card">
+                      <MediaCard
+                        id={node.id}
+                        onMouseEnter={() => setOpenMarker(node.id)}
+                        key={node.id}
+                        img={
+                          node.images?.[0]?.url && {
+                            url: `${node.images[0].url}?quality=75&width=600`,
+                            altText: node.images[0].altText,
+                            loading: i <= 1 ? "eager" : "lazy",
+                          }
+                        }
+                        title={node.name || node.title}
+                        subtitle=""
+                        description={
+                          node.description ||
+                          node.shortDescription ||
+                          node.listingDescription
+                        }
+                        links={[
+                          { href: node.url, text: "Read more at nps.gov" },
+                        ]}
+                      />
+                    </li>
+                  ))
+                ) : (
+                  <p className="no-results">No results.</p>
+                ))}
+            </ul>
           </div>
         </div>
 
@@ -70,6 +78,7 @@ export default function ParkPage({
             }}
             markers={mapMarkers}
             openMarker={openMarker}
+            setOpenMarker={setOpenMarker}
           />
         </div>
       </div>

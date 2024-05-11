@@ -1,6 +1,7 @@
 import Link from "next/link"
 
 export default function MediaCard({
+  id,
   img,
   imgHeight = 240,
   title,
@@ -11,7 +12,7 @@ export default function MediaCard({
   onMouseEnter,
 }) {
   return (
-    <div className="media-card" onMouseEnter={onMouseEnter}>
+    <div className="media-card" onMouseEnter={onMouseEnter} id={id}>
       {title && <h2 className="media-card__title">{title}</h2>}
 
       {img && (
