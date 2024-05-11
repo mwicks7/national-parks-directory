@@ -8,9 +8,10 @@ export default function MediaCard({
   description,
   links,
   children,
+  onMouseEnter,
 }) {
   return (
-    <div className="media-card">
+    <div className="media-card" onMouseEnter={onMouseEnter}>
       {title && <h2 className="media-card__title">{title}</h2>}
 
       {img && (

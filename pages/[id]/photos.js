@@ -32,8 +32,6 @@ export default function Photos({ parkInfo, data }) {
     }
   })
 
-  console.log(data)
-
   return (
     <Layout>
       <ParkPage parkInfo={parkInfo} pageTitle={pageTitle} mapMarkers={markers}>
