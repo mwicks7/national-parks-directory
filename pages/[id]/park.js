@@ -28,6 +28,7 @@ export async function getStaticProps({ params }) {
 export default function Park({ parkInfo, data }) {
   const markers = [
     {
+      id: 1,
       label: data.fullName,
       lat: Number(parkInfo.latitude),
       lng: Number(parkInfo.longitude),
@@ -86,6 +87,7 @@ export default function Park({ parkInfo, data }) {
         {data.images.map((image, i) => {
           return i !== 0 ? (
             <MediaCard
+              key={`${i}-${image.title}`}
               title={i === 1 ? "Photos" : null}
               img={{
                 url: `${image.url}?quality=75&width=600`,

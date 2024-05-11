@@ -38,11 +38,10 @@ export default function ParkPage({
               {data &&
                 (data.length > 0 ? (
                   data.map((node, i) => (
-                    <li className="park-page__card">
+                    <li className="park-page__card" key={node.id}>
                       <MediaCard
                         id={node.id}
                         onMouseEnter={() => setOpenMarker(node.id)}
-                        key={node.id}
                         img={
                           node.images?.[0]?.url && {
                             url: `${node.images[0].url}?quality=75&width=600`,
