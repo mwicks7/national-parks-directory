@@ -8,39 +8,28 @@ export async function getStaticProps() {
   return { props: { parks } }
 }
 
-function groupByState(parks) {
-  let states = []
-
-  parks.map((park) => {
-    const { stateFull } = park.location
-    const groupedState = states?.find((state) => state.stateFull === stateFull)
-
-    if (groupedState) {
-      groupedState.parks.push(park)
-    } else {
-      const newState = { stateFull, parks: [park] }
-      states.push(newState)
-    }
-  })
-
-  return states
-}
-
 export default function Home({ parks }) {
-  const parksByState = groupByState(parks)
+  const parksByState = parks.reduce((acc, park) => {
+    const parkState = park.location.stateFull
+    const accState = acc[parkState]
+    return {
+      ...acc,
+      ...{ [parkState]: accState ? accState.concat(park) : [park] },
+    }
+  }, {})
 
   return (
     <Layout page="Home">
       <div className="park-listing">
-        {parksByState.map((state) => (
+        {Object.keys(parksByState).map((state) => (
           <div
             className="park-listing__state"
-            id={urlString(state.stateFull)}
-            key={urlString(state.stateFull)}
+            id={urlString(state)}
+            key={urlString(state)}
           >
-            <h2 className="park-listing__state-name h1">{state.stateFull}</h2>
+            <h2 className="park-listing__state-name h1">{state}</h2>
             <ul className="park-listing__parks">
-              {state.parks.map((park, i) => (
+              {parksByState[state].map((park, i) => (
                 <li
                   className="park-listing__park"
                   key={`park-listing-${urlString(park.name)}`}
