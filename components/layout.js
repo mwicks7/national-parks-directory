@@ -54,7 +54,7 @@ export default function Layout({ page, children }) {
           id="navDrawerTrigger"
         >
           <Image
-            src={"/images/arrow-down.svg"}
+            src={"/images/icons/arrow-down.svg"}
             height={15}
             width={15}
             alt="Open navigation"
