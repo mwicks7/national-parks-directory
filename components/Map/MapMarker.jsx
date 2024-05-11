@@ -1,23 +1,26 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Marker, InfoWindow, useMarkerRef } from "@vis.gl/react-google-maps"
 
-const MapMarker = ({ parkMarker }) => {
-  const [infowindowOpen, setInfowindowOpen] = useState(false)
+const MapMarker = ({ parkMarker, openMarker }) => {
+  const [infoWindowOpen, setInfoWindowOpen] = useState(false)
   const [markerRef, marker] = useMarkerRef()
+
+  useEffect(() => {
+    setInfoWindowOpen(openMarker)
+  }, [openMarker])
 
   return (
     <>
       <Marker
         ref={markerRef}
-        onClick={() => setInfowindowOpen(!infowindowOpen)}
+        onClick={() => setInfoWindowOpen(!infoWindowOpen)}
         position={{ lat: parkMarker.lat, lng: parkMarker.lng }}
-        // title={"AdvancedMarker that opens an Infowindow when clicked."}
       />
-      {infowindowOpen && (
+      {infoWindowOpen && (
         <InfoWindow
           anchor={marker}
           maxWidth={200}
-          onCloseClick={() => setInfowindowOpen(false)}
+          onCloseClick={() => setInfoWindowOpen(false)}
         >
           {parkMarker.label}
         </InfoWindow>

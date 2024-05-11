@@ -46,58 +46,56 @@ export default function Park({ parkInfo, data }) {
   }, [data, parkInfo.latitude, parkInfo.longitude])
 
   return (
-    <Layout>
-      <ParkPage parkInfo={parkInfo} pageTitle="Info" mapMarkers={markers}>
-        <>
-          <MediaCard
-            img={
-              data.images.length > 0 && {
-                url: `${data.images[0].url}?quality=75&width=600`,
-                altText: data.images[0].altText,
-                loading: "eager",
-              }
+    <ParkPage parkInfo={parkInfo} pageTitle="Info" mapMarkerOverride={markers}>
+      <>
+        <MediaCard
+          img={
+            data.images.length > 0 && {
+              url: `${data.images[0].url}?quality=75&width=600`,
+              altText: data.images[0].altText,
+              loading: "eager",
             }
-            title="About"
-            description={parkInfo.description}
-            links={[
-              {
-                href: `https://nps.gov/${parkInfo.parkCode}`,
-                text: "Read more at nps.gov",
-              },
-            ]}
-          />
+          }
+          title="About"
+          description={parkInfo.description}
+          links={[
+            {
+              href: `https://nps.gov/${parkInfo.parkCode}`,
+              text: "Read more at nps.gov",
+            },
+          ]}
+        />
 
-          <MediaCard title="Directions" description={data.directionsInfo} />
+        <MediaCard title="Directions" description={data.directionsInfo} />
 
-          <MediaCard title="Weather Info" description={data.weatherInfo}>
-            {weatherData.current && (
-              <div className="weather-data">
-                <img
-                  aria-hidden="true"
-                  src={`https:${weatherData.current.condition.icon}`}
-                />
-                <p>
-                  Currently {weatherData.current.temp_f}&deg; (
-                  {weatherData.current.condition.text})
-                </p>
-              </div>
-            )}
-          </MediaCard>
+        <MediaCard title="Weather Info" description={data.weatherInfo}>
+          {weatherData.current && (
+            <div className="weather-data">
+              <img
+                aria-hidden="true"
+                src={`https:${weatherData.current.condition.icon}`}
+              />
+              <p>
+                Currently {weatherData.current.temp_f}&deg; (
+                {weatherData.current.condition.text})
+              </p>
+            </div>
+          )}
+        </MediaCard>
 
-          {data.images.map((image, i) => {
-            return i !== 0 ? (
-              <MediaCard
-                title={i === 1 ? "Photos" : null}
-                img={{
-                  url: `${image.url}?quality=75&width=600`,
-                  altText: image.altText,
-                }}
-                description={image.caption}
-              ></MediaCard>
-            ) : null
-          })}
-        </>
-      </ParkPage>
-    </Layout>
+        {data.images.map((image, i) => {
+          return i !== 0 ? (
+            <MediaCard
+              title={i === 1 ? "Photos" : null}
+              img={{
+                url: `${image.url}?quality=75&width=600`,
+                altText: image.altText,
+              }}
+              description={image.caption}
+            ></MediaCard>
+          ) : null
+        })}
+      </>
+    </ParkPage>
   )
 }
